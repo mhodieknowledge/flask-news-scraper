@@ -28,6 +28,9 @@ def scrape():
             paragraphs = post_data_div.find_all("p")
             main_content = "\n\n".join(p.get_text(strip=True) for p in paragraphs)
 
+            # Decode Unicode escape sequences
+            main_content = bytes(main_content, 'utf-8').decode('unicode_escape')
+
             return jsonify({"content": main_content}), 200
         else:
             return jsonify({"error": f"Failed to fetch the page. Status code: {response.status_code}"}), response.status_code
