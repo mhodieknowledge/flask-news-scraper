@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
+import re
+import html
 
 app = Flask(__name__)
 
@@ -26,10 +28,21 @@ def scrape():
 
             # Extract paragraphs from the div
             paragraphs = post_data_div.find_all("p")
-            main_content = "\n\n".join(p.get_text(strip=True) for p in paragraphs)
+            
+            # Process paragraphs to remove Unicode and ensure proper formatting
+            processed_paragraphs = []
+            for p in paragraphs:
+                # Remove Unicode characters and decode HTML entities
+                clean_text = html.unescape(p.get_text(strip=True))
+                
+                # Remove non-printable characters
+                clean_text = re.sub(r'[^\x20-\x7E\n]', '', clean_text)
+                
+                if clean_text:
+                    processed_paragraphs.append(clean_text)
 
-            # Ensure proper decoding of special characters
-            main_content = main_content.encode('utf-8').decode('utf-8')
+            # Join paragraphs with two newlines to create blank lines between paragraphs
+            main_content = "\n\n".join(processed_paragraphs)
 
             return jsonify({"content": main_content}), 200
         else:
