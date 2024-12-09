@@ -41,8 +41,8 @@ def scrape():
                 if clean_text:
                     processed_paragraphs.append(clean_text)
 
-            # Join paragraphs with two newlines to create blank lines between paragraphs
-            main_content = "\n\n".join(processed_paragraphs)
+            # Join paragraphs with a blank line after each paragraph
+            main_content = "\n\n".join(processed_paragraphs) + "\n\n"
 
             return jsonify({"content": main_content}), 200
         else:
