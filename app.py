@@ -20,7 +20,7 @@ def scrape():
             soup = BeautifulSoup(response.text, "html.parser")
             
             # Find the div with class "post_data"
-            post_data_div = soup.find("div", class_="page-content")
+            post_data_div = soup.find("div", class_="post_data")
             if not post_data_div:
                 return jsonify({"error": "No content found in the specified div"}), 404
 
@@ -28,8 +28,8 @@ def scrape():
             paragraphs = post_data_div.find_all("p")
             main_content = "\n\n".join(p.get_text(strip=True) for p in paragraphs)
 
-            # Decode Unicode escape sequences
-            main_content = bytes(main_content, 'utf-8').decode('unicode_escape')
+            # Ensure proper decoding of special characters
+            main_content = main_content.encode('utf-8').decode('utf-8')
 
             return jsonify({"content": main_content}), 200
         else:
