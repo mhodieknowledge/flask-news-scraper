@@ -18,8 +18,16 @@ def scrape():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            paragraphs = soup.find_all("p")
+            
+            # Find the div with class "post_data"
+            post_data_div = soup.find("div", class_="post_data")
+            if not post_data_div:
+                return jsonify({"error": "No content found in the specified div"}), 404
+
+            # Extract paragraphs from the div
+            paragraphs = post_data_div.find_all("p")
             main_content = "\n\n".join(p.get_text(strip=True) for p in paragraphs)
+
             return jsonify({"content": main_content}), 200
         else:
             return jsonify({"error": f"Failed to fetch the page. Status code: {response.status_code}"}), response.status_code
