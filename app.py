@@ -20,7 +20,7 @@ def scrape():
             soup = BeautifulSoup(response.text, "html.parser")
             
             # Find the div with class "post_data"
-            post_data_div = soup.find("div", class_="post_data")
+            post_data_div = soup.find("div", class_="post_dtl")
             if not post_data_div:
                 return jsonify({"error": "No content found in the specified div"}), 404
 
