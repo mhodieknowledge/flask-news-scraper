@@ -7,6 +7,10 @@ import json
 import os
 from git import Repo
 from flask import Flask, request, jsonify
+from bs4 import BeautifulSoup
+
+# Initialize Flask app
+app = Flask(__name__)
 
 # List of user agents for rotation
 user_agents = [
@@ -79,6 +83,12 @@ def scrape_and_save(rss_url, max_articles=3):
 
     print("News data saved successfully and pushed to GitHub")
 
-# Example RSS feed URL
-rss_url = "https://www.zimeye.net/feed/"
-scrape_and_save(rss_url)
+@app.route('/scrape', methods=['GET'])
+def scrape_news():
+    """Trigger news scraping and return the status."""
+    rss_url = "https://www.zimeye.net/feed/"  # Example RSS feed URL
+    scrape_and_save(rss_url)
+    return jsonify({"message": "Scraping completed and news.json updated!"}), 200
+
+if __name__ == "__main__":
+    app.run(debug=True)
