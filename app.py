@@ -74,7 +74,7 @@ def scrape_and_save(rss_url, max_articles=3):
 
     # Get GitHub token from environment variables
     github_token = os.getenv("GITHUB_TOKEN")
-    repo.git.push("https://x-access-token:" + github_token + "@github.com/YOUR_USERNAME/YOUR_REPOSITORY.git", "main")
+    repo.git.push("https://x-access-token:" + github_token + "@github.com/zeroteq/flask-news-scraper.git", "main")
 
     print("News data saved successfully and pushed to GitHub")
 
