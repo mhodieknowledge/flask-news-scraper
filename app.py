@@ -6,6 +6,7 @@ import feedparser
 import json
 import os
 from git import Repo
+from flask import Flask, request, jsonify
 
 # List of user agents for rotation
 user_agents = [
