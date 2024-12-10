@@ -1,36 +1,30 @@
-name: Scrape News
+name: News Scraping Workflow
 
 on:
   schedule:
-    - cron: "0 */12 * * *"  # This schedules the job to run every 12 hours.
-  workflow_dispatch:  # This allows you to trigger the workflow manually if needed.
+    - cron: '0 */12 * * *'  # Runs every 12 hours (UTC time)
+  workflow_dispatch:  # Allows manual trigger via GitHub UI
 
 jobs:
-  scrape:
+  scraping-job:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # This checks out your code from the repository.
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'  # Use the latest Python version.
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Install your dependencies (flask, requests, beautifulsoup4)
-
-    - name: Run scraper
-      run: |
-        python app.py  # Run your scraper script.
-        
-    - name: Commit news.json
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "your-email@example.com"
-        git add news.json
-        git commit -m "Update news.json with new content"
-        git push
+      - name: Trigger Vercel API to scrape news
+        run: |
+          # Use curl to send a GET request to the Vercel API endpoint
+          curl -X GET "https://your-vercel-app-name.vercel.app/scrape"
+      
+      - name: Commit and push changes to news.json
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add news.json
+          git commit -m "Update news.json with scraped news"
+          git push
+        env:
+          # Set GitHub token to authenticate the push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
