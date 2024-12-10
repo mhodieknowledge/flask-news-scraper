@@ -5,6 +5,8 @@ import re
 import feedparser
 import json
 import os
+import base64
+from git import Repo
 from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
 
@@ -52,39 +54,6 @@ def scrape_article_content(url):
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def commit_to_github(file_path, commit_message, content):
-    """Commit the updated file to GitHub using GitHub API."""
-    github_token = os.getenv("GITHUB_TOKEN")  # Ensure this is set in Vercel environment variables
-    repo_owner = "zeroteq"  # Replace with your GitHub username
-    repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
-    api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
-
-    # Fetch the current file's SHA to update it
-    headers = {
-        "Authorization": f"token {github_token}"
-    }
-
-    response = requests.get(api_url, headers=headers)
-    sha = None
-
-    if response.status_code == 200:
-        sha = response.json().get("sha")
-
-    # Prepare the data to send
-    data = {
-        "message": commit_message,
-        "content": content.encode("utf-8").decode("utf-8"),  # Encode the content to base64
-        "sha": sha
-    }
-
-    # Make the request to update the file
-    response = requests.put(api_url, headers=headers, json=data)
-    
-    if response.status_code == 201:
-        print(f"Successfully committed {file_path} to GitHub.")
-    else:
-        print(f"Failed to commit {file_path}. Error: {response.text}")
-
 def scrape_and_save(rss_url, max_articles=3):
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
@@ -100,9 +69,32 @@ def scrape_and_save(rss_url, max_articles=3):
         else:
             print(f"Failed to scrape {url}")
 
-    # Convert the news content to JSON and commit to GitHub
-    news_json_content = json.dumps(news_content, indent=4)
-    commit_to_github("news.json", "Update news.json with latest scraped articles", news_json_content)
+    # Encode the content of the file to Base64 before pushing it to GitHub
+    news_json = json.dumps(news_content, indent=4)
+    encoded_content = base64.b64encode(news_json.encode()).decode()
+
+    # Get GitHub token from environment variables
+    github_token = os.getenv("GITHUB_TOKEN")
+
+    # Define the GitHub API URL for updating the file in the repository
+    url = "https://api.github.com/repos/zeroteq/flask-news-scraper/contents/news.json"
+
+    # Prepare the data for the API request
+    data = {
+        "message": "Update news.json with latest scraped articles",
+        "content": encoded_content,
+        "branch": "main"
+    }
+
+    # Make the request to GitHub API to update the file
+    response = requests.put(url, json=data, headers={
+        "Authorization": f"token {github_token}"
+    })
+
+    if response.status_code == 200:
+        print("News data successfully pushed to GitHub")
+    else:
+        print(f"Failed to update file on GitHub: {response.text}")
 
 @app.route('/scrape', methods=['GET'])
 def scrape_news():
