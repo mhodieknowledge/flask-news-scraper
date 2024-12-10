@@ -16,7 +16,7 @@ jobs:
       - name: Trigger Vercel API to scrape news
         run: |
           # Use curl to send a GET request to the Vercel API endpoint
-          curl -X GET "https://your-vercel-app-name.vercel.app/scrape"
+          curl -X GET "https://flask-news-scraper.vercel.app/scrape"
       
       - name: Commit and push changes to news.json
         run: |
