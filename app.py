@@ -1,33 +1,30 @@
-from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
-import re
-import html
 import random
-
-app = Flask(__name__)
+import html
+import re
+import feedparser
+import json
 
 # List of user agents for rotation
 user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0",
-    "Mozilla/5.0 (Windows NT 6.1; rv:10.0) Gecko/20100101 Firefox/10.0",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.4; rv:124.0) Gecko/20100101 Firefox/124.0",
-    "Mozilla/5.0 (X11; Linux i686; rv:124.0) Gecko/20100101 Firefox/124.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.2420.81"
     # Add more user agents here as needed
 ]
 
-@app.route('/scrape', methods=['GET'])
-def scrape():
-    url = request.args.get('url')
-    if not url:
-        return jsonify({"error": "URL is required"}), 400
+def fetch_rss_feed(rss_url, max_articles=3):
+    """Fetch the RSS feed and extract article URLs."""
+    feed = feedparser.parse(rss_url)
+    urls = []
+    for entry in feed.entries[:max_articles]:  # Limit the number of articles to scrape
+        if 'link' in entry:
+            urls.append(entry.link)  # Collecting the URL of each article
+    return urls
 
-    # Pick a random user agent from the list
+def scrape_article_content(url):
+    """Scrape the main content from an article URL."""
     headers = {
         "User-Agent": random.choice(user_agents)
     }
@@ -36,35 +33,48 @@ def scrape():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            
-            # Find the div with class "post_data"
-            post_data_div = soup.find("div", class_="page-content")
-            if not post_data_div:
-                return jsonify({"error": "No content found in the specified div"}), 404
 
-            # Extract paragraphs from the div
+            post_data_div = soup.find("div", class_="page-content")  # Change class as needed
+            if not post_data_div:
+                return None
+
             paragraphs = post_data_div.find_all("p")
-            
-            # Process paragraphs to remove Unicode and ensure proper formatting
             processed_paragraphs = []
             for p in paragraphs:
-                # Remove Unicode characters and decode HTML entities
                 clean_text = html.unescape(p.get_text(strip=True))
-                
-                # Remove non-printable characters
                 clean_text = re.sub(r'[^\x20-\x7E\n]', '', clean_text)
-                
                 if clean_text:
                     processed_paragraphs.append(clean_text)
 
-            # Join paragraphs with a blank line after each paragraph
             main_content = "\n\n".join(processed_paragraphs) + "\n\n"
-
-            return jsonify({"content": main_content}), 200
+            return main_content
         else:
-            return jsonify({"error": f"Failed to fetch the page. Status code: {response.status_code}"}), response.status_code
+            return None
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"Error scraping {url}: {str(e)}")
+        return None
 
-if __name__ == "__main__":
-    app.run(debug=True)
+def scrape_and_save(rss_url, max_articles=3):
+    """Main function to scrape articles from RSS feed and save to news.json."""
+    urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
+    news_content = {"news": []}
+
+    for url in urls_to_scrape:
+        print(f"Scraping {url}...")
+        content = scrape_article_content(url)
+        if content:
+            news_content["news"].append({
+                "url": url,
+                "content": content
+            })
+        else:
+            print(f"Failed to scrape {url}")
+    
+    # Save the content to news.json file
+    with open("news.json", "w") as json_file:
+        json.dump(news_content, json_file, indent=4)
+    print("News data saved successfully to news.json")
+
+# Example RSS feed URL
+rss_url = "https://www.zimeye.net/feed/"
+scrape_and_save(rss_url)
