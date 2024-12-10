@@ -16,4 +16,5 @@ jobs:
     - name: Trigger Vercel API to scrape news
       run: |
         echo "Triggering Vercel API to scrape news..."
-        curl -X GET "https://flask-news-scraper.vercel.app/scrape"  # Replace with your actual Vercel API URL
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape")
+        echo "Vercel Response: $response"
