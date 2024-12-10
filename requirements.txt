@@ -2,4 +2,3 @@ flask
 requests
 beautifulsoup4
 feedparser
-gitpython
