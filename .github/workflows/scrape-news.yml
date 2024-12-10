@@ -3,7 +3,7 @@ name: Scrape News Every 12 Hours
 on:
   schedule:
     - cron: "0 */12 * * *"
-  workflow_dispatch: This will run the job every 12 hours at minute 0
+  workflow_dispatch:
 
 jobs:
   scrape-news:
