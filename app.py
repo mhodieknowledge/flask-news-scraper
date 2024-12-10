@@ -5,6 +5,7 @@ import re
 import feedparser
 import json
 import os
+import base64
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 
@@ -19,6 +20,7 @@ user_agents = [
 ]
 
 def fetch_rss_feed(rss_url, max_articles=3):
+    """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
     urls = []
     for entry in feed.entries[:max_articles]:
@@ -27,6 +29,7 @@ def fetch_rss_feed(rss_url, max_articles=3):
     return urls
 
 def scrape_article_content(url):
+    """Scrape and process article content from a URL."""
     headers = {
         "User-Agent": random.choice(user_agents)
     }
@@ -53,6 +56,7 @@ def scrape_article_content(url):
         return None
 
 def scrape_and_save(rss_url, max_articles=3):
+    """Scrape articles from RSS feed and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
@@ -67,7 +71,7 @@ def scrape_and_save(rss_url, max_articles=3):
         else:
             print(f"Failed to scrape {url}")
     
-    # Now using the GitHub API to update the file on GitHub
+    # Using the GitHub API to update the file
     github_token = os.getenv("GITHUB_TOKEN")
     repo_owner = "zeroteq"  # Replace with your GitHub username
     repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
@@ -80,7 +84,7 @@ def scrape_and_save(rss_url, max_articles=3):
         "Accept": "application/vnd.github.v3+json",
     }
 
-    # Get the current content of the file on GitHub
+    # Check if the file exists on GitHub
     url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}?ref={branch}"
     response = requests.get(url, headers=headers)
 
@@ -92,9 +96,12 @@ def scrape_and_save(rss_url, max_articles=3):
         sha = None  # If file doesn't exist, no sha needed
 
     # Prepare data for commit
+    file_content = json.dumps(news_content, indent=4)
+    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')  # Proper Base64 encoding
+
     data = {
         "message": "Update news.json with latest scraped articles",
-        "content": json.dumps(news_content, indent=4).encode('utf-8').decode('utf-8'),  # File content in base64
+        "content": encoded_content,  # Base64-encoded content
         "branch": branch
     }
 
@@ -105,7 +112,7 @@ def scrape_and_save(rss_url, max_articles=3):
     url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
     response = requests.put(url, headers=headers, json=data)
 
-    if response.status_code == 201:
+    if response.status_code in (200, 201):
         print("News data saved successfully and pushed to GitHub")
     else:
         print(f"Failed to update GitHub: {response.status_code}, {response.text}")
