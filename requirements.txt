@@ -2,9 +2,4 @@ flask
 requests
 beautifulsoup4
 feedparser
-aiohttp
-html5lib
-certifi
-gunicorn
-nltk
-textblob
+pytz
