@@ -1,20 +1,54 @@
-name: Scrape News Every 12 Hours
+name: Scrape News Feeds
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 6,18 * * *" # Herald at 8:00 AM & 8:00 PM CAT (UTC -2)
+    - cron: "15 6,18 * * *" # Chronicle at 8:15 AM & 8:15 PM CAT (UTC -2)
+    - cron: "30 6,18 * * *" # NewZimbabwe at 8:30 AM & 8:30 PM CAT (UTC -2)
+    - cron: "45 6,18 * * *" # ZimEye at 8:45 AM & 8:45 PM CAT (UTC -2)
   workflow_dispatch:
 
 jobs:
-  scrape-news:
+  herald-scrape:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Trigger Vercel API to scrape news
+    - name: Scrape Herald News
       run: |
-        echo "Triggering Vercel API to scrape news..."
-        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape")
+        echo "Scraping Herald news..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/herald")
+        echo "Vercel Response: $response"
+
+  chronicle-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Chronicle News
+      run: |
+        echo "Scraping Chronicle news..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/chronicle")
+        echo "Vercel Response: $response"
+
+  newzimbabwe-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape NewZimbabwe News
+      run: |
+        echo "Scraping NewZimbabwe news..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/newzimbabwe")
+        echo "Vercel Response: $response"
+
+  zimeye-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape ZimEye News
+      run: |
+        echo "Scraping ZimEye news..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/zimeye")
         echo "Vercel Response: $response"
