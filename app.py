@@ -23,22 +23,27 @@ user_agents = [
 feeds = {
     "chronicle": {
         "rss_url": "https://www.chronicle.co.zw/feed/",
-        "div_class": "post--content",
+        "content_class": "post--content",
+        "image_class": "s-post-thumbnail",
         "json_file": "chronicle.json"
     },
     "newzimbabwe": {
         "rss_url": "https://www.newzimbabwe.com/feed/",
-        "div_class": "post-body",
+        "content_class": "post-body",
+        "image_class": "post-media",
         "json_file": "newzimbabwe.json"
     },
     "zimeye": {
         "rss_url": "https://www.zimeye.net/feed/",
-        "div_class": "page-content",
-        "json_file": "zimeye.json"
+        "content_class": "page-content",
+        "image_class": None,  # No image for ZimEye
+        "json_file": "zimeye.json",
+        "custom_image_url": "https://example.com/default-image.jpg"  # Replace with your default image URL
     },
     "herald": {
         "rss_url": "https://www.herald.co.zw/feed/",
-        "div_class": "post--content",
+        "content_class": "post--content",
+        "image_class": "s-post-thumbnail",
         "json_file": "herald.json"
     }
 }
@@ -52,14 +57,16 @@ def fetch_rss_feed(rss_url, max_articles=3):
             urls.append(entry.link)
     return urls
 
-def scrape_article_content(url, div_class):
-    """Scrape and process article content from a URL."""
+def scrape_article_content(url, content_class, image_class=None, custom_image_url=None):
+    """Scrape article content and image URL from a URL."""
     headers = {"User-Agent": random.choice(user_agents)}
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            post_data_div = soup.find("div", class_=div_class)
+
+            # Extract content
+            post_data_div = soup.find("div", class_=content_class)
             if not post_data_div:
                 return None
             paragraphs = post_data_div.find_all("p")
@@ -70,25 +77,37 @@ def scrape_article_content(url, div_class):
                 if clean_text:
                     processed_paragraphs.append(clean_text)
             main_content = "\n\n".join(processed_paragraphs) + "\n\n"
-            return main_content
+
+            # Extract image
+            if image_class:
+                image_div = soup.find("div", class_=image_class)
+                if image_div and image_div.img and image_div.img.get("src"):
+                    image_url = image_div.img["src"]
+                else:
+                    image_url = custom_image_url
+            else:
+                image_url = custom_image_url  # Use default for ZimEye or missing images
+
+            return {"content": main_content, "image_url": image_url}
         else:
             return None
     except Exception as e:
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def scrape_and_save_to_github(rss_url, div_class, json_file, max_articles=3):
+def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
     """Scrape articles from an RSS feed and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
     for url in urls_to_scrape:
         print(f"Scraping {url}...")
-        content = scrape_article_content(url, div_class)
-        if content:
+        data = scrape_article_content(url, content_class, image_class, custom_image_url)
+        if data:
             news_content["news"].append({
                 "url": url,
-                "content": content
+                "content": data["content"],
+                "image_url": data["image_url"]
             })
         else:
             print(f"Failed to scrape {url}")
@@ -140,8 +159,10 @@ def scrape_feed(feed_name):
         feed_data = feeds[feed_name]
         scrape_and_save_to_github(
             rss_url=feed_data["rss_url"],
-            div_class=feed_data["div_class"],
-            json_file=feed_data["json_file"]
+            content_class=feed_data["content_class"],
+            image_class=feed_data.get("image_class"),
+            json_file=feed_data["json_file"],
+            custom_image_url=feed_data.get("custom_image_url")
         )
         return jsonify({"message": f"Scraping completed for {feed_name}!"}), 200
     else:
