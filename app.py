@@ -6,6 +6,8 @@ import feedparser
 import json
 import os
 import base64
+import asyncio
+import aiohttp
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 
@@ -36,9 +38,9 @@ feeds = {
     "zimeye": {
         "rss_url": "https://www.zimeye.net/feed/",
         "content_class": "page-content",
-        "image_class": None,  # No image for ZimEye
+        "image_class": None,
         "json_file": "news/zimeye.json",
-        "custom_image_url": "https://example.com/default-image.jpg"  # Replace with your default image URL
+        "custom_image_url": "https://example.com/default-image.jpg"
     },
     "herald": {
         "rss_url": "https://www.herald.co.zw/feed/",
@@ -49,17 +51,13 @@ feeds = {
 }
 
 def fetch_rss_feed(rss_url, max_articles=10):
-    """Fetch URLs, descriptions, and other metadata from the RSS feed."""
+    """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
-    articles = []
+    urls = []
     for entry in feed.entries[:max_articles]:
-        if 'link' in entry and 'summary' in entry:
-            article = {
-                "url": entry.link,
-                "description": html.unescape(entry.summary)  # Decode HTML entities in the description
-            }
-            articles.append(article)
-    return articles
+        if 'link' in entry:
+            urls.append(entry.link)
+    return urls
 
 def scrape_article_content(url, content_class, image_class=None, custom_image_url=None):
     """Scrape article content and image URL from a URL."""
@@ -90,7 +88,7 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
                 else:
                     image_url = custom_image_url
             else:
-                image_url = custom_image_url  # Use default for ZimEye or missing images
+                image_url = custom_image_url
 
             return {"content": main_content, "image_url": image_url}
         else:
@@ -99,37 +97,60 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
-    """Scrape articles from an RSS feed and save to GitHub."""
-    articles_to_scrape = fetch_rss_feed(rss_url, max_articles)
-    news_content = {"news": []}
+async def send_to_ai(api_url, content):
+    """Send content to AI for rephrasing."""
+    prompt = f"""
+    Rephrase the following content and generate a title and description based on it. Return the result in JSON format as shown below without any commentary or additional text:
+    {{
+        "title": "Rephrased title here",
+        "description": "Rephrased description here",
+        "rephrased_content": "Rephrased article content here"
+    }}
 
-    for article in articles_to_scrape:
-        url = article["url"]
-        description = article["description"]
-        print(f"Scraping {url}...")
-        data = scrape_article_content(url, content_class, image_class, custom_image_url)
-        if data:
-            news_content["news"].append({
+    Content: {content}
+    """
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{api_url}?text={prompt}") as response:
+                if response.status == 200:
+                    return await response.json()
+                else:
+                    print(f"AI API error: {response.status}")
+                    return None
+    except Exception as e:
+        print(f"Error connecting to AI API: {str(e)}")
+        return None
+
+async def process_article(url, content_class, image_class, api_url, custom_image_url=None):
+    """Scrape and rephrase article."""
+    scraped_data = scrape_article_content(url, content_class, image_class, custom_image_url)
+    if scraped_data:
+        rephrased = await send_to_ai(api_url, scraped_data["content"])
+        if rephrased:
+            return {
                 "url": url,
-                "content": data["content"],
-                "image_url": data["image_url"],
-                "description": description
-            })
-        else:
-            print(f"Failed to scrape {url}")
+                "title": rephrased.get("title", "Untitled"),
+                "description": rephrased.get("description", "No description available"),
+                "content": rephrased.get("rephrased_content", scraped_data["content"]),
+                "image_url": scraped_data["image_url"]
+            }
+    return None
 
-    # Using the GitHub API to update the file
+async def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, api_url, custom_image_url=None, max_articles=3):
+    """Scrape and rephrase articles asynchronously, then save to GitHub."""
+    urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
+    tasks = [process_article(url, content_class, image_class, api_url, custom_image_url) for url in urls_to_scrape]
+    articles = await asyncio.gather(*tasks)
+    news_content = {"news": [article for article in articles if article]}
+
+    # Save to GitHub
     github_token = os.getenv("GITHUB_TOKEN")
-    repo_owner = "zeroteq"  # Replace with your GitHub username
-    repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
+    repo_owner = "zeroteq"
+    repo_name = "flask-news-scraper"
     branch = "main"
-
-    # Prepare data for commit
     file_content = json.dumps(news_content, indent=4)
     encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')
 
-    # Get file information from GitHub
     headers = {
         "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json",
@@ -137,19 +158,14 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
     url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
     response = requests.get(url, headers=headers)
 
-    if response.status_code == 200:
-        file_info = response.json()
-        sha = file_info['sha']
-    else:
-        sha = None  # If file doesn't exist, no sha needed
-
+    sha = response.json().get('sha') if response.status_code == 200 else None
     data = {
         "message": f"Update {json_file} with latest scraped articles",
         "content": encoded_content,
         "branch": branch
     }
     if sha:
-        data["sha"] = sha  # Add sha for existing file update
+        data["sha"] = sha
 
     response = requests.put(url, headers=headers, json=data)
     if response.status_code in (200, 201):
@@ -162,13 +178,14 @@ def scrape_feed(feed_name):
     """Scrape a specific feed by its name."""
     if feed_name in feeds:
         feed_data = feeds[feed_name]
-        scrape_and_save_to_github(
+        asyncio.run(scrape_and_save_to_github(
             rss_url=feed_data["rss_url"],
             content_class=feed_data["content_class"],
             image_class=feed_data.get("image_class"),
             json_file=feed_data["json_file"],
+            api_url="https://api.paxsenix.biz.id/ai/gpt4omini",
             custom_image_url=feed_data.get("custom_image_url")
-        )
+        ))
         return jsonify({"message": f"Scraping completed for {feed_name}!"}), 200
     else:
         return jsonify({"error": "Feed not found"}), 404
