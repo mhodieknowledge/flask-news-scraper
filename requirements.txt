@@ -1,4 +1,8 @@
-flask
-requests
-beautifulsoup4
-feedparser
+Flask==2.3.2
+requests==2.31.0
+beautifulsoup4==4.12.2
+feedparser==6.0.10
+aiohttp==3.8.5
+html5lib==1.1
+certifi==2023.7.22
+gunicorn==20.1.0
