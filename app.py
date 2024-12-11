@@ -5,6 +5,7 @@ import re
 import feedparser
 import json
 import os
+import base64
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 
@@ -94,58 +95,32 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def process_ai_response(response):
-    """Process the AI's response and extract the title, description, and rephrased content."""
-    if response['ok']:
-        message = response['message']
-        
-        title = message.split("title: [")[1].split("]")[0].strip()
-        description = message.split("description: [")[1].split("]")[0].strip()
-        rephrased_content = message.split("rephrased_content: [")[1].split("]")[0].strip()
+def send_to_ai_api(content):
+    """Send content to the AI API for rephrasing, title, and description generation."""
+    ai_url = "https://api.paxsenix.biz.id/ai/gpt4o"
+    prompt = f"Rephrase the content below and generate a title and description.\n\n{content}"
+    response = requests.get(ai_url, params={"text": prompt})
 
-        return {
-            "title": title,
-            "description": description,
-            "rephrased_content": rephrased_content
-        }
+    if response.status_code == 200:
+        ai_response = response.json()
+        if ai_response.get('ok') == True:
+            message = ai_response.get("message", "")
+            # Extract title, description, and rephrased content from the AI response
+            lines = message.split('\n')
+            title = lines[0].replace('- title:', '').strip() if len(lines) > 0 else ""
+            description = lines[1].replace('- description:', '').strip() if len(lines) > 1 else ""
+            rephrased_content = lines[2].replace('- rephrased_content:', '').strip() if len(lines) > 2 else ""
+            
+            return {"title": title, "description": description, "content": rephrased_content}
+        else:
+            print("Error: AI response is not OK")
+            return None
     else:
-        print("Error: AI response is not OK.")
+        print(f"Failed to get response from AI API, status code: {response.status_code}")
         return None
 
-def update_json_with_ai_data(json_data, ai_data):
-    """Update the scraped JSON with the AI-generated title, description, and rephrased content."""
-    for article in json_data['news']:
-        article['title'] = ai_data['title']
-        article['description'] = ai_data['description']
-        article['rephrased_content'] = ai_data['rephrased_content']
-    return json_data
-
-def send_to_ai_and_update_json(scraped_content):
-    """Send content to the AI API and update the JSON data with AI-generated content."""
-    ai_url = "https://api.paxsenix.biz.id/ai/gpt4o"
-    
-    for article in scraped_content['news']:
-        content = article['content']
-        
-        # Prepare the AI prompt
-        prompt = f"without commenting or including any additional data ephrase the following news article and generate a title and description:\n\n{content}"
-        
-        # Send request to the AI API
-        response = requests.get(f"{ai_url}?text={prompt}")
-        ai_response = response.json()
-
-        # Process AI response and extract relevant information
-        ai_data = process_ai_response(ai_response)
-
-        if ai_data:
-            # Update the article with the AI-generated content
-            article_data = update_json_with_ai_data(scraped_content, ai_data)
-            print(f"Updated article data: {article_data}")
-        else:
-            print("Failed to process AI response.")
-
 def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
-    """Scrape articles from an RSS feed and save to GitHub."""
+    """Scrape articles from an RSS feed, send them to AI API, and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
@@ -153,16 +128,18 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
-            news_content["news"].append({
-                "url": url,
-                "content": data["content"],
-                "image_url": data["image_url"]
-            })
+            ai_data = send_to_ai_api(data["content"])
+            if ai_data:
+                news_content["news"].append({
+                    "url": url,
+                    "content": ai_data["content"],
+                    "image_url": data["image_url"],
+                    "title": ai_data["title"],
+                    "description": ai_data["description"],
+                    "time": "2024-12-11T08:00:00"  # Example timestamp (You can replace it with actual time)
+                })
         else:
             print(f"Failed to scrape {url}")
-
-    # Send content to AI and update it
-    send_to_ai_and_update_json(news_content)
 
     # Using the GitHub API to update the file
     github_token = os.getenv("GITHUB_TOKEN")
@@ -172,9 +149,37 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
 
     # Prepare data for commit
     file_content = json.dumps(news_content, indent=4)
-    
-    # The process to update the content on GitHub is omitted for brevity, but you can follow the existing logic.
-    # Here, you would send the updated content back to GitHub as you did earlier.
+    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')  # Proper Base64 encoding
+
+    # Get file information from GitHub
+    headers = {
+        "Authorization": f"Bearer {github_token}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        # If file exists, get the sha to update
+        file_info = response.json()
+        sha = file_info['sha']
+    else:
+        sha = None  # If file doesn't exist, no sha needed
+
+    data = {
+        "message": f"Update {json_file} with latest scraped articles",
+        "content": encoded_content,
+        "branch": branch
+    }
+    if sha:
+        data["sha"] = sha  # Add sha for existing file update
+
+    # Make the request to update the file
+    response = requests.put(url, headers=headers, json=data)
+    if response.status_code in (200, 201):
+        print(f"{json_file} updated successfully on GitHub")
+    else:
+        print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
 @app.route('/scrape/<feed_name>', methods=['GET'])
 def scrape_feed(feed_name):
