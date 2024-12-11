@@ -36,9 +36,9 @@ feeds = {
     "zimeye": {
         "rss_url": "https://www.zimeye.net/feed/",
         "content_class": "page-content",
-        "image_class": None,  # No image for ZimEye
+        "image_class": None,  # No images
         "json_file": "zimeye.json",
-        "custom_image_url": "https://example.com/default-image.jpg"  # Replace with your default image URL
+        "custom_image_url": "https://example.com/custom-image.jpg"
     },
     "herald": {
         "rss_url": "https://www.herald.co.zw/feed/",
@@ -58,14 +58,14 @@ def fetch_rss_feed(rss_url, max_articles=3):
     return urls
 
 def scrape_article_content(url, content_class, image_class=None, custom_image_url=None):
-    """Scrape article content and image URL from a URL."""
+    """Scrape and process article content and image URL from a URL."""
     headers = {"User-Agent": random.choice(user_agents)}
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-
-            # Extract content
+            
+            # Scrape main content
             post_data_div = soup.find("div", class_=content_class)
             if not post_data_div:
                 return None
@@ -76,17 +76,14 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
                 clean_text = re.sub(r'[^\x20-\x7E\n]', '', clean_text)
                 if clean_text:
                     processed_paragraphs.append(clean_text)
-            main_content = "\n\n".join(processed_paragraphs) + "\n\n"
+            main_content = "\n\n".join(processed_paragraphs)
 
-            # Extract image
+            # Scrape image URL
             if image_class:
                 image_div = soup.find("div", class_=image_class)
-                if image_div and image_div.img and image_div.img.get("src"):
-                    image_url = image_div.img["src"]
-                else:
-                    image_url = custom_image_url
+                image_url = image_div.img['src'] if image_div and image_div.img else None
             else:
-                image_url = custom_image_url  # Use default for ZimEye or missing images
+                image_url = custom_image_url  # Fallback for ZimEye or missing images
 
             return {"content": main_content, "image_url": image_url}
         else:
@@ -112,6 +109,14 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         else:
             print(f"Failed to scrape {url}")
 
+    # Create the folder if it doesn't exist
+    folder_name = "news_contents"
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    # Update the path to include the folder
+    json_file_path = os.path.join(folder_name, json_file)
+
     # Using the GitHub API to update the file
     github_token = os.getenv("GITHUB_TOKEN")
     repo_owner = "zeroteq"  # Replace with your GitHub username
@@ -127,7 +132,7 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file_path}?ref={branch}"
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
