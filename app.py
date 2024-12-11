@@ -46,7 +46,7 @@ rss_sources = [
     }
 ]
 
-def fetch_rss_feed(rss_url, max_articles=3):
+def fetch_rss_feed(rss_url, max_articles=1):
     feed = feedparser.parse(rss_url)
     urls = []
     for entry in feed.entries[:max_articles]:
