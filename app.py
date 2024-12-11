@@ -25,26 +25,26 @@ feeds = {
         "rss_url": "https://www.chronicle.co.zw/feed/",
         "content_class": "post--content",
         "image_class": "s-post-thumbnail",
-        "json_file": "chronicle.json"
+        "json_file": "news/chronicle.json"
     },
     "newzimbabwe": {
         "rss_url": "https://www.newzimbabwe.com/feed/",
         "content_class": "post-body",
         "image_class": "post-media",
-        "json_file": "newzimbabwe.json"
+        "json_file": "news/newzimbabwe.json"
     },
     "zimeye": {
         "rss_url": "https://www.zimeye.net/feed/",
         "content_class": "page-content",
         "image_class": None,  # No image for ZimEye
-        "json_file": "zimeye.json",
+        "json_file": "news/zimeye.json",
         "custom_image_url": "https://example.com/default-image.jpg"  # Replace with your default image URL
     },
     "herald": {
         "rss_url": "https://www.herald.co.zw/feed/",
         "content_class": "post--content",
         "image_class": "s-post-thumbnail",
-        "json_file": "herald.json"
+        "json_file": "news/herald.json"
     }
 }
 
