@@ -48,7 +48,7 @@ feeds = {
     }
 }
 
-def fetch_rss_feed(rss_url, max_articles=10):
+def fetch_rss_feed(rss_url, max_articles=1):
     """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
     urls = []
@@ -98,7 +98,7 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
 def send_to_ai_api(content):
     """Send content to the AI API for rephrasing, title, and description generation."""
     ai_url = "https://api.paxsenix.biz.id/ai/gpt4o"
-    prompt = f"Rephrase the content below and generate a title and description.\n\n{content}"
+    prompt = f"Without commenting or including additional data ,Rephrase the content below and generate a title and description.\n\n{content}"
     response = requests.get(ai_url, params={"text": prompt})
 
     if response.status_code == 200:
