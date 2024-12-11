@@ -1,12 +1,3 @@
 {
-    "news": [
-        {
-            "url": "https://www.zimeye.net/2024/12/11/woman-raped-after-falling-prey-to-online-job-scam/",
-            "content": "",
-            "image_url": "https://example.com/default-image.jpg",
-            "title": "**Title:**",
-            "description": "ZRP Cautions Public Against Social Media Scams",
-            "time": "2024-12-11T08:00:00"
-        }
-    ]
+    "news": []
 }
