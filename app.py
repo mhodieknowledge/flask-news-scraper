@@ -79,7 +79,7 @@ async def send_to_ai_api(content):
             print(f"Error connecting to AI API: {str(e)}")
             return None
 
-def fetch_rss_feed(rss_url, max_articles=10):
+def fetch_rss_feed(rss_url, max_articles=3):
     """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
     urls = []
