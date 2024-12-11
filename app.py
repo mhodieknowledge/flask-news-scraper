@@ -8,6 +8,7 @@ import os
 import base64
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -95,6 +96,34 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
         print(f"Error scraping {url}: {str(e)}")
         return None
 
+def rephrase_and_generate_fields(content):
+    """Send the scraped content to the AI API for rephrasing, title, and description generation."""
+    prompt = f"""
+    You are provided with the following news content: {content}
+
+    1. Rephrase the content to improve readability.
+    2. Generate a concise and informative title for the news content.
+    3. Write a brief summary (description) of the content.
+    4. Ensure the output is formatted as follows:
+       - Rephrased Content: <Your content here>
+       - Title: <Your title here>
+       - Description: <Your description here>
+    """
+    api_url = f"https://api.paxsenix.biz.id/ai/gpt4o?text={prompt}"
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        result = response.json()
+        if result.get("ok"):
+            message = result["message"]
+            # Assuming the API response provides a properly formatted output
+            return {
+                "content": message.get("Rephrased Content"),
+                "title": message.get("Title"),
+                "description": message.get("Description"),
+            }
+    return None
+
 def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
     """Scrape articles from an RSS feed and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
@@ -104,11 +133,20 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
-            news_content["news"].append({
-                "url": url,
-                "content": data["content"],
-                "image_url": data["image_url"]
-            })
+            # Rephrase and generate title/description
+            ai_generated_data = rephrase_and_generate_fields(data["content"])
+            if ai_generated_data:
+                current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                news_content["news"].append({
+                    "url": url,
+                    "content": ai_generated_data["content"],
+                    "title": ai_generated_data["title"],
+                    "description": ai_generated_data["description"],
+                    "image_url": data["image_url"],
+                    "time": current_time
+                })
+            else:
+                print(f"Failed to generate data for {url}")
         else:
             print(f"Failed to scrape {url}")
 
