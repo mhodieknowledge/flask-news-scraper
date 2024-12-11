@@ -8,14 +8,8 @@ import os
 import base64
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
-from textblob import TextBlob
-from nltk.corpus import wordnet
-import nltk
-
-# Download necessary NLTK data files (use local storage on Vercel if needed)
-nltk.data.path.append('/home/sbx_user1051/nltk_data')  # Adjust path if necessary for Vercel
-nltk.download('punkt', download_dir='/home/sbx_user1051/nltk_data')
-nltk.download('wordnet', download_dir='/home/sbx_user1051/nltk_data')
+from datetime import datetime
+import pytz
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -56,36 +50,20 @@ feeds = {
     }
 }
 
-def fetch_rss_feed(rss_url, max_articles=3):
-    """Fetch URLs and descriptions from the RSS feed."""
+def fetch_rss_feed(rss_url, max_articles=7):
+    """Fetch URLs, descriptions, titles, and other metadata from the RSS feed."""
     feed = feedparser.parse(rss_url)
     articles = []
     for entry in feed.entries[:max_articles]:
         if 'link' in entry and 'summary' in entry:
             article = {
+                "title": entry.title,
                 "url": entry.link,
-                "description": html.unescape(entry.summary)  # Decode HTML entities in the description
+                "description": html.unescape(entry.summary),  # Decode HTML entities in the description
+                "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%Y-%m-%d %H:%M:%S')  # CAT time
             }
             articles.append(article)
     return articles
-
-def rephrase_text(text):
-    """Rephrase text using TextBlob and WordNet for synonyms."""
-    blob = TextBlob(text)
-    words = blob.words
-    rephrased_words = []
-    
-    for word in words:
-        synonyms = wordnet.synsets(word)
-        if synonyms:
-            # Replace with a synonym if available
-            synonym = synonyms[0].lemmas()[0].name().replace("_", " ")
-            rephrased_words.append(synonym)
-        else:
-            rephrased_words.append(word)  # Keep the original word
-    
-    rephrased_text = " ".join(rephrased_words)
-    return rephrased_text
 
 def scrape_article_content(url, content_class, image_class=None, custom_image_url=None):
     """Scrape article content and image URL from a URL."""
@@ -132,21 +110,24 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
 
     for article in articles_to_scrape:
         url = article["url"]
-        description = rephrase_text(article["description"])  # Rephrase description
+        description = article["description"]
+        title = article["title"]
+        time = article["time"]
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
-            rephrased_content = rephrase_text(data["content"])  # Rephrase content
             news_content["news"].append({
+                "title": title,
                 "url": url,
-                "content": rephrased_content,
+                "content": data["content"],
                 "image_url": data["image_url"],
-                "description": description
+                "description": description,
+                "time": time
             })
         else:
             print(f"Failed to scrape {url}")
 
-    # Save to GitHub (unchanged logic)
+    # Using the GitHub API to update the file
     github_token = os.getenv("GITHUB_TOKEN")
     repo_owner = "zeroteq"  # Replace with your GitHub username
     repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
