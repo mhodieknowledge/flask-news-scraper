@@ -19,6 +19,30 @@ user_agents = [
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
 ]
 
+# Feed configuration
+feeds = {
+    "chronicle": {
+        "rss_url": "https://www.chronicle.co.zw/feed/",
+        "div_class": "post-content",
+        "json_file": "chronicle.json"
+    },
+    "newzimbabwe": {
+        "rss_url": "https://www.newzimbabwe.com/feed/",
+        "div_class": "post-body",
+        "json_file": "newzimbabwe.json"
+    },
+    "zimeye": {
+        "rss_url": "https://www.zimeye.net/feed/",
+        "div_class": "page-content",
+        "json_file": "zimeye.json"
+    },
+    "herald": {
+        "rss_url": "https://www.herald.co.zw/feed/",
+        "div_class": "post-content",
+        "json_file": "herald.json"
+    }
+}
+
 def fetch_rss_feed(rss_url, max_articles=3):
     """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
@@ -28,16 +52,14 @@ def fetch_rss_feed(rss_url, max_articles=3):
             urls.append(entry.link)
     return urls
 
-def scrape_article_content(url):
+def scrape_article_content(url, div_class):
     """Scrape and process article content from a URL."""
-    headers = {
-        "User-Agent": random.choice(user_agents)
-    }
+    headers = {"User-Agent": random.choice(user_agents)}
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            post_data_div = soup.find("div", class_="page-content")
+            post_data_div = soup.find("div", class_=div_class)
             if not post_data_div:
                 return None
             paragraphs = post_data_div.find_all("p")
@@ -55,14 +77,14 @@ def scrape_article_content(url):
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def scrape_and_save(rss_url, max_articles=3):
-    """Scrape articles from RSS feed and save to GitHub."""
+def scrape_and_save_to_github(rss_url, div_class, json_file, max_articles=3):
+    """Scrape articles from an RSS feed and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
     for url in urls_to_scrape:
         print(f"Scraping {url}...")
-        content = scrape_article_content(url)
+        content = scrape_article_content(url, div_class)
         if content:
             news_content["news"].append({
                 "url": url,
@@ -70,22 +92,23 @@ def scrape_and_save(rss_url, max_articles=3):
             })
         else:
             print(f"Failed to scrape {url}")
-    
+
     # Using the GitHub API to update the file
     github_token = os.getenv("GITHUB_TOKEN")
     repo_owner = "zeroteq"  # Replace with your GitHub username
     repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
-    file_path = "news.json"
     branch = "main"
 
-    # Get the current file content from GitHub
+    # Prepare data for commit
+    file_content = json.dumps(news_content, indent=4)
+    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')  # Proper Base64 encoding
+
+    # Get file information from GitHub
     headers = {
         "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-
-    # Check if the file exists on GitHub
-    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}?ref={branch}"
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
@@ -95,34 +118,34 @@ def scrape_and_save(rss_url, max_articles=3):
     else:
         sha = None  # If file doesn't exist, no sha needed
 
-    # Prepare data for commit
-    file_content = json.dumps(news_content, indent=4)
-    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')  # Proper Base64 encoding
-
     data = {
-        "message": "Update news.json with latest scraped articles",
-        "content": encoded_content,  # Base64-encoded content
+        "message": f"Update {json_file} with latest scraped articles",
+        "content": encoded_content,
         "branch": branch
     }
-
     if sha:
         data["sha"] = sha  # Add sha for existing file update
 
     # Make the request to update the file
-    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
     response = requests.put(url, headers=headers, json=data)
-
     if response.status_code in (200, 201):
-        print("News data saved successfully and pushed to GitHub")
+        print(f"{json_file} updated successfully on GitHub")
     else:
-        print(f"Failed to update GitHub: {response.status_code}, {response.text}")
+        print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
-@app.route('/scrape', methods=['GET'])
-def scrape_news():
-    """Trigger news scraping and return the status."""
-    rss_url = "https://www.zimeye.net/feed/"  # Example RSS feed URL
-    scrape_and_save(rss_url)
-    return jsonify({"message": "Scraping completed and news.json updated!"}), 200
+@app.route('/scrape/<feed_name>', methods=['GET'])
+def scrape_feed(feed_name):
+    """Scrape a specific feed by its name."""
+    if feed_name in feeds:
+        feed_data = feeds[feed_name]
+        scrape_and_save_to_github(
+            rss_url=feed_data["rss_url"],
+            div_class=feed_data["div_class"],
+            json_file=feed_data["json_file"]
+        )
+        return jsonify({"message": f"Scraping completed for {feed_name}!"}), 200
+    else:
+        return jsonify({"error": "Feed not found"}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
