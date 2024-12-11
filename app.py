@@ -50,7 +50,7 @@ feeds = {
     }
 }
 
-def fetch_rss_feed(rss_url, max_articles=7):
+def fetch_rss_feed(rss_url, max_articles=10):
     """Fetch URLs, descriptions, titles, and other metadata from the RSS feed."""
     feed = feedparser.parse(rss_url)
     articles = []
@@ -103,7 +103,7 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
+def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=10):
     """Scrape articles from an RSS feed and save to GitHub."""
     articles_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
