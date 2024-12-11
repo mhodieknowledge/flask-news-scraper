@@ -98,19 +98,38 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
 def send_to_ai_api(content):
     """Send content to the AI API for rephrasing, title, and description generation."""
     ai_url = "https://api.paxsenix.biz.id/ai/gpt4o"
-    prompt = f"Without commenting or including additional data ,Rephrase the content below and generate a title and description.\n\n{content}"
+    
+    # Detailed prompt for AI to generate structured response
+    prompt = f"""
+    Rephrase the following article content in a clear, concise, and engaging manner. Additionally, generate a title and a description based on the article. The response should contain the following fields in the exact format below, with no additional commentary or text:
+
+    - **title**: Generate a short, informative title for the article.
+    - **description**: Provide a 2-3 sentence summary of the article that captures its key points.
+    - **rephrased_content**: Rephrase the article content to make it more engaging and easier to read, without changing the original meaning.
+
+    Article content:
+    {content}
+    """
+    
+    # Make the API request with the prompt
     response = requests.get(ai_url, params={"text": prompt})
 
     if response.status_code == 200:
         ai_response = response.json()
+        
+        # Ensure the AI response is okay
         if ai_response.get('ok') == True:
             message = ai_response.get("message", "")
-            # Extract title, description, and rephrased content from the AI response
+            
+            # Split the response message into components
             lines = message.split('\n')
+            
+            # Extract the title, description, and rephrased content from the response
             title = lines[0].replace('- title:', '').strip() if len(lines) > 0 else ""
             description = lines[1].replace('- description:', '').strip() if len(lines) > 1 else ""
             rephrased_content = lines[2].replace('- rephrased_content:', '').strip() if len(lines) > 2 else ""
             
+            # Return the structured content
             return {"title": title, "description": description, "content": rephrased_content}
         else:
             print("Error: AI response is not OK")
@@ -120,7 +139,7 @@ def send_to_ai_api(content):
         return None
 
 def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
-    """Scrape articles from an RSS feed, send them to AI API, and save to GitHub."""
+    """Scrape articles from an RSS feed and save to GitHub."""
     urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
@@ -128,15 +147,17 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
-            ai_data = send_to_ai_api(data["content"])
-            if ai_data:
+            # Send the content to AI API for rephrasing, title, and description
+            ai_result = send_to_ai_api(data["content"])
+            if ai_result:
+                # Add AI-generated fields to the news content
                 news_content["news"].append({
                     "url": url,
-                    "content": ai_data["content"],
+                    "content": ai_result["content"],
                     "image_url": data["image_url"],
-                    "title": ai_data["title"],
-                    "description": ai_data["description"],
-                    "time": "2024-12-11T08:00:00"  # Example timestamp (You can replace it with actual time)
+                    "title": ai_result["title"],
+                    "description": ai_result["description"],
+                    "time": "2024-12-11T08:00:00"  # Replace with current time if needed
                 })
         else:
             print(f"Failed to scrape {url}")
