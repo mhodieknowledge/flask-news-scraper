@@ -38,7 +38,7 @@ feeds = {
     },
     "herald": {
         "rss_url": "https://www.herald.co.zw/feed/",
-        "div_class": "post-content",
+        "div_class": "post--content",
         "json_file": "herald.json"
     }
 }
