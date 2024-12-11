@@ -12,9 +12,10 @@ from textblob import TextBlob
 from nltk.corpus import wordnet
 import nltk
 
-# Download necessary NLTK data files
-nltk.download('punkt')
-nltk.download('wordnet')
+# Download necessary NLTK data files (use local storage on Vercel if needed)
+nltk.data.path.append('/home/sbx_user1051/nltk_data')  # Adjust path if necessary for Vercel
+nltk.download('punkt', download_dir='/home/sbx_user1051/nltk_data')
+nltk.download('wordnet', download_dir='/home/sbx_user1051/nltk_data')
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -146,7 +147,42 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
             print(f"Failed to scrape {url}")
 
     # Save to GitHub (unchanged logic)
-    ...
+    github_token = os.getenv("GITHUB_TOKEN")
+    repo_owner = "zeroteq"  # Replace with your GitHub username
+    repo_name = "flask-news-scraper"  # Replace with your GitHub repository name
+    branch = "main"
+
+    # Prepare data for commit
+    file_content = json.dumps(news_content, indent=4)
+    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')
+
+    # Get file information from GitHub
+    headers = {
+        "Authorization": f"Bearer {github_token}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        file_info = response.json()
+        sha = file_info['sha']
+    else:
+        sha = None  # If file doesn't exist, no sha needed
+
+    data = {
+        "message": f"Update {json_file} with latest scraped articles",
+        "content": encoded_content,
+        "branch": branch
+    }
+    if sha:
+        data["sha"] = sha  # Add sha for existing file update
+
+    response = requests.put(url, headers=headers, json=data)
+    if response.status_code in (200, 201):
+        print(f"{json_file} updated successfully on GitHub")
+    else:
+        print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
 @app.route('/scrape/<feed_name>', methods=['GET'])
 def scrape_feed(feed_name):
