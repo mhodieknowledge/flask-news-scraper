@@ -23,7 +23,7 @@ user_agents = [
 feeds = {
     "chronicle": {
         "rss_url": "https://www.chronicle.co.zw/feed/",
-        "div_class": "post-content",
+        "div_class": "post--content",
         "json_file": "chronicle.json"
     },
     "newzimbabwe": {
