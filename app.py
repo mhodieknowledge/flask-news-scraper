@@ -49,13 +49,17 @@ feeds = {
 }
 
 def fetch_rss_feed(rss_url, max_articles=10):
-    """Fetch URLs from the RSS feed."""
+    """Fetch URLs, descriptions, and other metadata from the RSS feed."""
     feed = feedparser.parse(rss_url)
-    urls = []
+    articles = []
     for entry in feed.entries[:max_articles]:
-        if 'link' in entry:
-            urls.append(entry.link)
-    return urls
+        if 'link' in entry and 'summary' in entry:
+            article = {
+                "url": entry.link,
+                "description": html.unescape(entry.summary)  # Decode HTML entities in the description
+            }
+            articles.append(article)
+    return articles
 
 def scrape_article_content(url, content_class, image_class=None, custom_image_url=None):
     """Scrape article content and image URL from a URL."""
@@ -97,17 +101,20 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
 
 def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, custom_image_url=None, max_articles=3):
     """Scrape articles from an RSS feed and save to GitHub."""
-    urls_to_scrape = fetch_rss_feed(rss_url, max_articles)
+    articles_to_scrape = fetch_rss_feed(rss_url, max_articles)
     news_content = {"news": []}
 
-    for url in urls_to_scrape:
+    for article in articles_to_scrape:
+        url = article["url"]
+        description = article["description"]
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
             news_content["news"].append({
                 "url": url,
                 "content": data["content"],
-                "image_url": data["image_url"]
+                "image_url": data["image_url"],
+                "description": description
             })
         else:
             print(f"Failed to scrape {url}")
@@ -120,7 +127,7 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
 
     # Prepare data for commit
     file_content = json.dumps(news_content, indent=4)
-    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')  # Proper Base64 encoding
+    encoded_content = base64.b64encode(file_content.encode('utf-8')).decode('utf-8')
 
     # Get file information from GitHub
     headers = {
@@ -131,7 +138,6 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        # If file exists, get the sha to update
         file_info = response.json()
         sha = file_info['sha']
     else:
@@ -145,7 +151,6 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
     if sha:
         data["sha"] = sha  # Add sha for existing file update
 
-    # Make the request to update the file
     response = requests.put(url, headers=headers, json=data)
     if response.status_code in (200, 201):
         print(f"{json_file} updated successfully on GitHub")
