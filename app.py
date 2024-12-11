@@ -48,7 +48,7 @@ feeds = {
     }
 }
 
-def fetch_rss_feed(rss_url, max_articles=3):
+def fetch_rss_feed(rss_url, max_articles=10):
     """Fetch URLs from the RSS feed."""
     feed = feedparser.parse(rss_url)
     urls = []
