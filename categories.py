@@ -1,18 +1,42 @@
 import requests
+import random
 import json
 import os
 import base64
+from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 
-# GitHub configuration
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-REPO_OWNER = "zeroteq"  # Replace with your GitHub username
-REPO_NAME = "flask-news-scraper"  # Replace with your repository name
-BRANCH = "main"  # GitHub branch to use
+# Initialize Flask app
+app = Flask(__name__)
 
-def scrape_and_save_category(category, url, json_file):
-    """Scrape a specific category page and save data to GitHub."""
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+# List of user agents for rotation
+user_agents = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
+]
+
+# GitHub configuration
+github_token = os.getenv("GITHUB_TOKEN")
+repo_owner = "zeroteq"  # Replace with your GitHub username
+repo_name = "flask-news-scraper"  # Replace with your repository name
+branch = "main"
+
+# Category configuration
+categories = {
+    "business": "https://www.zbcnews.co.zw/category/business/",
+    "local": "https://www.zbcnews.co.zw/category/local-news/",
+    "sport": "https://www.zbcnews.co.zw/category/sport/",
+}
+json_files = {
+    "business": "custom-rss/business.json",
+    "local": "custom-rss/local.json",
+    "sport": "custom-rss/sport.json",
+}
+
+def scrape_category_page(url, category_name):
+    """Scrape a specific category page for articles."""
+    headers = {"User-Agent": random.choice(user_agents)}
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
@@ -23,16 +47,14 @@ def scrape_and_save_category(category, url, json_file):
         data = []
         for article in articles:
             category_tag = article.find("a", class_="td-post-category")
-            if category_tag and category_tag.text.strip() == category.capitalize():
+            if category_tag and category_tag.text.strip() == category_name.capitalize():
                 title = article.find("p", class_="entry-title td-module-title").find("a").text.strip()
                 href = article.find("p", class_="entry-title td-module-title").find("a")["href"]
                 data.append({"title": title, "href": href})
-
-        # Save to GitHub
-        save_to_github(json_file, {"news": data})
-        print(f"Scraped {len(data)} articles for {category}. Data saved to GitHub.")
+        return data
     else:
-        print(f"Failed to fetch category: {category}. Status code: {response.status_code}")
+        print(f"Failed to scrape {category_name}. Status code: {response.status_code}")
+        return None
 
 def save_to_github(json_file, data):
     """Save the scraped data to GitHub."""
@@ -40,9 +62,9 @@ def save_to_github(json_file, data):
     encoded_content = base64.b64encode(file_content.encode("utf-8")).decode("utf-8")
 
     # GitHub API URL for the file
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{json_file}?ref={BRANCH}"
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{json_file}?ref={branch}"
     headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Authorization": f"Bearer {github_token}",
         "Accept": "application/vnd.github.v3+json",
     }
 
@@ -58,7 +80,7 @@ def save_to_github(json_file, data):
     payload = {
         "message": f"Update {json_file} with latest scraped articles",
         "content": encoded_content,
-        "branch": BRANCH,
+        "branch": branch,
     }
     if sha:
         payload["sha"] = sha
@@ -70,18 +92,21 @@ def save_to_github(json_file, data):
     else:
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
-if __name__ == "__main__":
-    categories = {
-        "business": "https://www.zbcnews.co.zw/category/business/",
-        "local": "https://www.zbcnews.co.zw/category/local-news/",
-        "sport": "https://www.zbcnews.co.zw/category/sport/",
-    }
-    json_files = {
-        "business": "custom-rss/business.json",
-        "local": "custom-rss/local.json",
-        "sport": "custom-rss/sport.json",
-    }
+@app.route('/scrape/category/<category>', methods=['GET'])
+def scrape_category(category):
+    """Endpoint to scrape a specific category and save data to GitHub."""
+    if category in categories:
+        url = categories[category]
+        json_file = json_files[category]
+        data = scrape_category_page(url, category)
 
-    # Scrape each category and save data
-    for category, url in categories.items():
-        scrape_and_save_category(category, url, json_files[category])
+        if data:
+            save_to_github(json_file, {"news": data})
+            return jsonify({"message": f"Scraped {len(data)} articles for {category} and saved to GitHub."}), 200
+        else:
+            return jsonify({"error": f"Failed to scrape {category}."}), 500
+    else:
+        return jsonify({"error": "Category not found"}), 404
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5001)
