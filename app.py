@@ -165,23 +165,6 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
     else:
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
-@app.route('/scrape/<feed_name>', methods=['GET'])
-def scrape_feed(feed_name):
-    """Scrape a specific feed by its name."""
-    if feed_name in feeds:
-        feed_data = feeds[feed_name]
-        scrape_and_save_to_github(
-            rss_url=feed_data["rss_url"],
-            content_class=feed_data["content_class"],
-            image_class=feed_data.get("image_class"),
-            json_file=feed_data["json_file"],
-            custom_image_url=feed_data.get("custom_image_url")
-        )
-        return jsonify({"message": f"Scraping completed for {feed_name}!"}), 200
-    else:
-        return jsonify({"error": "Feed not found"}), 404
-
-# New scraping functionality for Business, Local News, and Sport categories
 @app.route('/scrape/category/<category>', methods=['GET'])
 def scrape_category(category):
     """Scrape a specific category page and save data to GitHub."""
@@ -195,17 +178,19 @@ def scrape_category(category):
         "local": "custom-rss/local.json",
         "sport": "custom-rss/sport.json"
     }
+
     if category in urls:
         url = urls[category]
         headers = {"User-Agent": random.choice(user_agents)}
         response = requests.get(url, headers=headers)
+
         if response.status_code == 200:
             # Parse the HTML content using BeautifulSoup
             soup = BeautifulSoup(response.content, "html.parser")
-            
+
             # Find all relevant div elements (same as the original code)
             articles = soup.find_all("div", class_="td-module-meta-info")
-            
+
             # Extract title and link
             data = []
             for article in articles:
@@ -215,7 +200,7 @@ def scrape_category(category):
                     href = article.find("p", class_="entry-title td-module-title").find("a")["href"]
                     data.append({"title": title, "href": href})
 
-            # Save to GitHub using scrape_and_save_to_github
+            # Save the scraped data to GitHub directly using the scrape_and_save_to_github function
             scrape_and_save_to_github(
                 rss_url=url,
                 content_class="td-module-meta-info",
@@ -224,10 +209,6 @@ def scrape_category(category):
                 custom_image_url=None,
                 max_articles=len(data)
             )
-
-            # Save locally as well
-            with open(json_files[category], "w", encoding="utf-8") as file:
-                json.dump(data, file, indent=4)
 
             return jsonify({"message": f"Scraped {len(data)} articles for {category} and saved to GitHub."}), 200
         else:
