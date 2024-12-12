@@ -1,10 +1,8 @@
 {
   "builds": [
-    { "src": "app.py", "use": "@vercel/python" },
     { "src": "categories.py", "use": "@vercel/python" }
   ],
   "routes": [
-    { "src": "/scrape/(.*)", "dest": "app.py" },
-    { "src": "/scrape/category/(.*)", "dest": "categories.py" }
+    { "src": "/.*", "dest": "categories.py" }
   ]
 }
