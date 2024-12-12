@@ -183,7 +183,7 @@ def scrape_feed(feed_name):
 @app.route('/scrape/category/<category>', methods=['GET'])
 def scrape_category(category):
     if category in categories:
-        data = scrape_category_page(categories[category], category)
+        data = scrape_category_page(categories[category], category)[:10]
         save_to_github(json_files[category], {"news": data})
         return jsonify({"message": f"Scraped category: {category}!"}), 200
     return jsonify({"error": "Category not found"}), 404
