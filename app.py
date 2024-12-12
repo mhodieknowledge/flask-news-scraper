@@ -200,25 +200,34 @@ def scrape_category(category):
         headers = {"User-Agent": random.choice(user_agents)}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
+            # Parse the HTML content using BeautifulSoup
             soup = BeautifulSoup(response.content, "html.parser")
+            
+            # Find all relevant div elements (same as the original code)
             articles = soup.find_all("div", class_="td-module-meta-info")
+            
+            # Extract title and link
             data = []
             for article in articles:
-                title_tag = article.find("p", class_="entry-title td-module-title")
-                if title_tag and title_tag.find("a"):
-                    title = title_tag.find("a").text.strip()
-                    href = title_tag.find("a")["href"]
+                category_tag = article.find("a", class_="td-post-category")
+                if category_tag and category_tag.text.strip() == category.capitalize():
+                    title = article.find("p", class_="entry-title td-module-title").find("a").text.strip()
+                    href = article.find("p", class_="entry-title td-module-title").find("a")["href"]
                     data.append({"title": title, "href": href})
 
             # Save to GitHub using scrape_and_save_to_github
             scrape_and_save_to_github(
-                rss_url=url,  # Required, though the function doesn't use it directly here
+                rss_url=url,
                 content_class="td-module-meta-info",
                 image_class=None,
                 json_file=json_files[category],  # File path for GitHub
                 custom_image_url=None,
                 max_articles=len(data)
             )
+
+            # Save locally as well
+            with open(json_files[category], "w", encoding="utf-8") as file:
+                json.dump(data, file, indent=4)
 
             return jsonify({"message": f"Scraped {len(data)} articles for {category} and saved to GitHub."}), 200
         else:
