@@ -181,5 +181,54 @@ def scrape_feed(feed_name):
     else:
         return jsonify({"error": "Feed not found"}), 404
 
+# New scraping functionality for Business, Local News, and Sport categories
+@app.route('/scrape/category/<category>', methods=['GET'])
+def scrape_category(category):
+    """Scrape a specific category page and save data to JSON."""
+    urls = {
+        "business": "https://www.zbcnews.co.zw/category/business/",
+        "local": "https://www.zbcnews.co.zw/category/local-news/",
+        "sport": "https://www.zbcnews.co.zw/category/sport/"
+    }
+    json_files = {
+        "business": "custom-rss/business.json",
+        "local": "custom-rss/local.json",
+        "sport": "custom-rss/sport.json"
+    }
+    if category in urls:
+        url = urls[category]
+        json_file = json_files[category]
+
+        # Scrape the category page
+        headers = {"User-Agent": random.choice(user_agents)}
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, "html.parser")
+            articles = soup.find_all("div", class_="td-module-meta-info")
+            data = []
+            for article in articles:
+                title_tag = article.find("p", class_="entry-title td-module-title")
+                if title_tag and title_tag.find("a"):
+                    title = title_tag.find("a").text.strip()
+                    href = title_tag.find("a")["href"]
+                    data.append({"title": title, "href": href})
+
+            # Save scraped data to JSON
+            with open(json_file, "w", encoding="utf-8") as file:
+                json.dump(data, file, indent=4)
+
+            # Optionally, save to GitHub
+            scrape_and_save_to_github(
+                rss_url=url,
+                content_class="td-module-meta-info",
+                image_class=None,
+                json_file=json_file
+            )
+
+            return jsonify({"message": f"Scraped {len(data)} articles for {category}."}), 200
+        else:
+            return jsonify({"error": f"Failed to scrape {category}. Status code: {response.status_code}"}), 500
+    return jsonify({"error": "Category not found"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
