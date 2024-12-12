@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # List of user agents for rotation
 user_agents = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
 ]
@@ -184,7 +184,7 @@ def scrape_feed(feed_name):
 # New scraping functionality for Business, Local News, and Sport categories
 @app.route('/scrape/category/<category>', methods=['GET'])
 def scrape_category(category):
-    """Scrape a specific category page and save data to JSON."""
+    """Scrape a specific category page and save data to GitHub."""
     urls = {
         "business": "https://www.zbcnews.co.zw/category/business/",
         "local": "https://www.zbcnews.co.zw/category/local-news/",
@@ -197,9 +197,6 @@ def scrape_category(category):
     }
     if category in urls:
         url = urls[category]
-        json_file = json_files[category]
-
-        # Scrape the category page
         headers = {"User-Agent": random.choice(user_agents)}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
@@ -213,19 +210,17 @@ def scrape_category(category):
                     href = title_tag.find("a")["href"]
                     data.append({"title": title, "href": href})
 
-            # Save scraped data to JSON
-            with open(json_file, "w", encoding="utf-8") as file:
-                json.dump(data, file, indent=4)
-
-            # Optionally, save to GitHub
+            # Save to GitHub using scrape_and_save_to_github
             scrape_and_save_to_github(
-                rss_url=url,
+                rss_url=url,  # Required, though the function doesn't use it directly here
                 content_class="td-module-meta-info",
                 image_class=None,
-                json_file=json_file
+                json_file=json_files[category],  # File path for GitHub
+                custom_image_url=None,
+                max_articles=len(data)
             )
 
-            return jsonify({"message": f"Scraped {len(data)} articles for {category}."}), 200
+            return jsonify({"message": f"Scraped {len(data)} articles for {category} and saved to GitHub."}), 200
         else:
             return jsonify({"error": f"Failed to scrape {category}. Status code: {response.status_code}"}), 500
     return jsonify({"error": "Category not found"}), 404
