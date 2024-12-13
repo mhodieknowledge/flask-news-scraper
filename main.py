@@ -361,15 +361,14 @@ def scrape_category(category):
 @app.route('/scrape/process-custom-rss/<filename>', methods=['GET'])
 def process_specific_rss(filename):
     """
-    Endpoint to process a specific custom RSS JSON file.
+    Endpoint to process a specific custom RSS JSON file from GitHub.
     
     :param filename: Name of the custom RSS JSON file (e.g., "business.json").
     """
-    # Extract category from filename (e.g., "business.json" -> "business")
-    category = filename.split('.')[0]  
-    json_file = f"custom-rss/{filename}"
+    category = filename.split('.')[0]  # Extract category from filename (business, local, etc.)
+    json_file = f"custom-rss/{filename}"  # Reference the file in the GitHub repository
     
-    # Use the process_custom_rss_json function to fetch, process, and save data
+    # Process the file directly from GitHub
     processed_file = process_custom_rss_json(json_file, category)
     
     if processed_file:
