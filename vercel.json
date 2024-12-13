@@ -1,10 +1,11 @@
 {
+  "version": 2,
   "builds": [
     { "src": "main.py", "use": "@vercel/python" }
   ],
   "routes": [
     { "src": "/scrape/category/(.*)", "dest": "main.py" },
-    { "src": "/scrape/(.*)", "dest": "main.py" },
-    { "src": "/scrape/custom/(.*)", "dest": "main.py" }
+    { "src": "/scrape/custom/(.*)", "dest": "main.py" },
+    { "src": "/scrape/(.*)", "dest": "main.py" }
   ]
 }
