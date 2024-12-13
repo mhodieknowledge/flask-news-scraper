@@ -365,19 +365,15 @@ def process_specific_rss(filename):
     
     :param filename: Name of the custom RSS JSON file (e.g., "business.json").
     """
-    custom_rss_dir = "/custom-rss"
-    json_path = os.path.join(custom_rss_dir, filename)
-    
-    if not os.path.isfile(json_path):
-        return jsonify({"error": f"File {filename} does not exist in {custom_rss_dir}"}), 404
-    
     category = filename.split('.')[0]  # Extract category from filename
-    output_file = process_custom_rss_json(json_path, category)
+    json_file = f"custom-rss/{filename}"
     
-    if output_file:
+    processed_file = process_custom_rss_json(json_file, category)
+    
+    if processed_file:
         return jsonify({
-            "message": f"Scraped articles for {category} and saved to {output_file}",
-            "articles_count": len(json.load(open(output_file))['news'])
+            "message": f"Processed {filename} successfully and updated on GitHub.",
+            "file": processed_file
         }), 200
     else:
         return jsonify({"error": f"Failed to process {filename}."}), 500
