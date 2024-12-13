@@ -350,7 +350,7 @@ def scrape_category(category):
     else:
         return jsonify({"error": "Category not found"}), 404
 
-@app.route('/process-custom-rss', methods=['GET'])
+@app.route('/scrape/process-custom-rss', methods=['GET'])
 def process_all_custom_rss():
     """
     Endpoint to process all custom RSS JSON files.
