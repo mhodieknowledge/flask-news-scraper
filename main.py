@@ -251,26 +251,39 @@ def scrape_feed(feed_name):
     else:
         return jsonify({"error": "Feed not found"}), 404
 
-def exclude_last_paragraphs(paragraphs, exclude_count):
-    """ Excludes the last `exclude_count` paragraphs from the list. """
-    return paragraphs[:-exclude_count] if len(paragraphs) > exclude_count else []
-
-
 def scrape_custom_content(url):
-    """ Scrapes content from the given URL, excluding the last 3 paragraphs. """
+    """Scrapes content from the given URL, excluding the last 3 paragraphs."""
     try:
         headers = {"User-Agent": random.choice(user_agents)}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            paragraphs = soup.find_all("p")
+            
+            # Find the specific div containing the content
+            main_content = soup.find("div", class_="td-main-content-wrap td-container-wrap")
+            
+            # Fallback to another class if main_content is None
+            if not main_content:
+                main_content = soup.find("div", class_="tdc-container-wrap")
+            
+            if not main_content:
+                return "Could not find the specified content div."
+            
+            # Extract paragraphs within the main content
+            paragraphs = main_content.find_all("p")
+            
+            # Exclude the last 3 paragraphs
             filtered_paragraphs = exclude_last_paragraphs(paragraphs, 3)
+            
             return "\n".join(p.get_text(strip=True) for p in filtered_paragraphs)
         else:
             return f"Failed to fetch the page at {url}. Status code: {response.status_code}"
     except Exception as e:
         return f"Error fetching URL {url}: {e}"
 
+def exclude_last_paragraphs(paragraphs, count):
+    """Excludes the last `count` paragraphs from a list."""
+    return paragraphs[:-count] if len(paragraphs) > count else paragraphs
 
 def scrape_custom_json(json_url, save_path):
     """ Scrape articles from a custom JSON file and save to GitHub. """
