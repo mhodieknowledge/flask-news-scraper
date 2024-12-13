@@ -268,28 +268,39 @@ def scrape_zbc_content(url):
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def process_custom_rss_json(json_path, output_category):
+def def process_custom_rss_json(json_path, output_category):
     """
     Process custom RSS JSON files and scrape content for each link.
     
     :param json_path: Path to the input JSON file
-    :param output_category: Category for output JSON file (business, local, sport)
+    :param output_category: Category for output JSON file (e.g., business, local, sport)
     """
     try:
-        # Ensure output directory exists
-        os.makedirs("/zbc", exist_ok=True)
-        
-        # Read input JSON file
-        with open(json_path, 'r') as f:
-            input_data = json.load(f)
-        
+        # Define the GitHub path for the custom RSS file
+        github_json_file = f"custom-rss/{output_category}.json"
+
+        # Read the input JSON file from GitHub
+        url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{github_json_file}?ref={branch}"
+        headers = {
+            "Authorization": f"Bearer {github_token}",
+            "Accept": "application/vnd.github.v3+json",
+        }
+        response = requests.get(url, headers=headers)
+
+        if response.status_code == 200:
+            file_info = response.json()
+            file_content = base64.b64decode(file_info["content"]).decode("utf-8")
+            input_data = json.loads(file_content)
+        else:
+            return f"Error: Unable to fetch {github_json_file} from GitHub. Status code: {response.status_code}"
+
         # Prepare output data
         output_data = {"news": []}
-        
+
         # Iterate through links in the input JSON
-        for item in input_data.get('news', []):
-            url = item.get('href')
-            title = item.get('title')
+        for item in input_data.get("news", []):
+            url = item.get("href")
+            title = item.get("title")
             
             if not url:
                 continue
@@ -302,18 +313,15 @@ def process_custom_rss_json(json_path, output_category):
                     "title": title,
                     "url": url,
                     "content": scraped_content,
-                    "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%Y-%m-%d %H:%M:%S')
+                    "time": datetime.now(pytz.timezone("Africa/Harare")).strftime("%Y-%m-%d %H:%M:%S"),
                 }
                 output_data["news"].append(output_item)
-        
-        # Write to output JSON file in /zbc directory
-        output_file = f"/zbc/{output_category}.json"
-        with open(output_file, 'w') as f:
-            json.dump(output_data, f, indent=4)
-        
-        print(f"Successfully processed {json_path} and saved to {output_file}")
-        return output_file
-    
+
+        # Save the processed data back to GitHub
+        save_to_github(github_json_file, output_data)
+        print(f"Successfully processed {github_json_file} and updated on GitHub.")
+
+        return github_json_file
     except Exception as e:
         print(f"Error processing {json_path}: {str(e)}")
         return None
