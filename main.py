@@ -272,14 +272,14 @@ def process_custom_rss_json(json_path, output_category):
     """
     Process custom RSS JSON files and scrape content for each link.
     
-    :param json_path: Path to the input JSON file (e.g., custom-rss/business.json).
+    :param json_path: Path to the input JSON file (GitHub path)
     :param output_category: Category for output JSON file (e.g., business, local, sport)
     """
     try:
         # Define the GitHub path for the custom RSS file
-        github_json_file = f"custom-rss/{output_category}.json"
+        github_json_file = f"custom-rss/{output_category}.json"  # Reference GitHub path
 
-        # Read the input JSON file from GitHub
+        # Fetch the JSON file from GitHub
         url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{github_json_file}?ref={branch}"
         headers = {
             "Authorization": f"Bearer {github_token}",
