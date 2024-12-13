@@ -272,7 +272,7 @@ def process_custom_rss_json(json_path, output_category):
     """
     Process custom RSS JSON files and scrape content for each link.
     
-    :param json_path: Path to the input JSON file
+    :param json_path: Path to the input JSON file (e.g., custom-rss/business.json).
     :param output_category: Category for output JSON file (e.g., business, local, sport)
     """
     try:
