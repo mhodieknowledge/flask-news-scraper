@@ -59,7 +59,7 @@ feeds = {
 # Category configuration
 categories = {
     "business": "https://www.zbcnews.co.zw/category/business/",
-    "local-news": "https://www.zbcnews.co.zw/category/local-news",
+    "local": "https://www.zbcnews.co.zw/category/local-news/",
     "sport": "https://www.zbcnews.co.zw/category/sport/",
 }
 
@@ -68,6 +68,12 @@ json_files = {
     "local": "custom-rss/local.json",
     "sport": "custom-rss/sport.json",
 }
+
+def exclude_last_paragraphs(paragraphs, exclude_count=3):
+    """
+    Excludes the last `exclude_count` paragraphs from the list.
+    """
+    return paragraphs[:-exclude_count] if len(paragraphs) > exclude_count else []
 
 def fetch_rss_feed(rss_url, max_articles=10):
     """Fetch URLs, descriptions, titles, and other metadata from the RSS feed."""
@@ -235,6 +241,83 @@ def save_to_github(json_file, data):
     else:
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
+def scrape_zbc_content(url):
+    """
+    Scrape content from ZBC news pages with specific scraping mechanism.
+    """
+    headers = {"User-Agent": random.choice(user_agents)}
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
+
+            # Extract all <p> tags
+            paragraphs = soup.find_all("p")
+
+            # Exclude the last 3 paragraphs
+            filtered_paragraphs = exclude_last_paragraphs(paragraphs)
+
+            # Combine the remaining paragraphs' text
+            main_content = "\n".join(p.get_text(strip=True) for p in filtered_paragraphs)
+
+            return main_content
+        else:
+            print(f"Failed to fetch the page. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        print(f"Error scraping {url}: {str(e)}")
+        return None
+
+def process_custom_rss_json(json_path, output_category):
+    """
+    Process custom RSS JSON files and scrape content for each link.
+    
+    :param json_path: Path to the input JSON file
+    :param output_category: Category for output JSON file (business, local, sport)
+    """
+    try:
+        # Ensure output directory exists
+        os.makedirs("/zbc", exist_ok=True)
+        
+        # Read input JSON file
+        with open(json_path, 'r') as f:
+            input_data = json.load(f)
+        
+        # Prepare output data
+        output_data = {"news": []}
+        
+        # Iterate through links in the input JSON
+        for item in input_data.get('news', []):
+            url = item.get('href')
+            title = item.get('title')
+            
+            if not url:
+                continue
+            
+            # Scrape content for the URL
+            scraped_content = scrape_zbc_content(url)
+            
+            if scraped_content:
+                output_item = {
+                    "title": title,
+                    "url": url,
+                    "content": scraped_content,
+                    "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%Y-%m-%d %H:%M:%S')
+                }
+                output_data["news"].append(output_item)
+        
+        # Write to output JSON file in /zbc directory
+        output_file = f"/zbc/{output_category}.json"
+        with open(output_file, 'w') as f:
+            json.dump(output_data, f, indent=4)
+        
+        print(f"Successfully processed {json_path} and saved to {output_file}")
+        return output_file
+    
+    except Exception as e:
+        print(f"Error processing {json_path}: {str(e)}")
+        return None
+
 @app.route('/scrape/<feed_name>', methods=['GET'])
 def scrape_feed(feed_name):
     """Scrape a specific feed by its name."""
@@ -266,6 +349,53 @@ def scrape_category(category):
             return jsonify({"error": f"Failed to scrape {category}."}), 500
     else:
         return jsonify({"error": "Category not found"}), 404
+
+@app.route('/process-custom-rss', methods=['GET'])
+def process_all_custom_rss():
+    """
+    Endpoint to process all custom RSS JSON files.
+    """
+    custom_rss_dir = "/custom-rss"
+    results = {}
+    
+    try:
+        # Iterate through JSON files in custom-rss directory
+        for filename in os.listdir(custom_rss_dir):
+            if filename.endswith('.json'):
+                category = filename.split('.')[0]  # Extract category from filename
+                json_path = os.path.join(custom_rss_dir, filename)
+                
+                # Additional route to process a specific category
+                @app.route(f'/process-custom-rss/{category}', methods=['GET'])
+                def process_specific_category():
+                    output_file = process_custom_rss_json(json_path, category)
+                    
+                    if output_file:
+                        return jsonify({
+                            "message": f"Scraped articles for {category} and saved to {output_file}",
+                            "articles_count": len(json.load(open(output_file))['news'])
+                        }), 200
+                    else:
+                        return jsonify({"error": f"Failed to scrape {category}."}), 500
+                
+                output_file = process_custom_rss_json(json_path, category)
+                
+                if output_file:
+                    results[category] = {
+                        "status": "success",
+                        "output_file": output_file,
+                        "articles_count": len(json.load(open(output_file))['news'])
+                    }
+                else:
+                    results[category] = {
+                        "status": "failed"
+                    }
+        
+        return jsonify(results), 200
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
