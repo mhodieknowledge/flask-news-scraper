@@ -268,7 +268,7 @@ def scrape_zbc_content(url):
         print(f"Error scraping {url}: {str(e)}")
         return None
 
-def def process_custom_rss_json(json_path, output_category):
+def process_custom_rss_json(json_path, output_category):
     """
     Process custom RSS JSON files and scrape content for each link.
     
