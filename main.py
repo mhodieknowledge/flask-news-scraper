@@ -251,6 +251,84 @@ def scrape_feed(feed_name):
     else:
         return jsonify({"error": "Feed not found"}), 404
 
+def exclude_last_paragraphs(paragraphs, exclude_count):
+    """ Excludes the last `exclude_count` paragraphs from the list. """
+    return paragraphs[:-exclude_count] if len(paragraphs) > exclude_count else []
+
+
+def scrape_custom_content(url):
+    """ Scrapes content from the given URL, excluding the last 3 paragraphs. """
+    try:
+        headers = {"User-Agent": random.choice(user_agents)}
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
+            paragraphs = soup.find_all("p")
+            filtered_paragraphs = exclude_last_paragraphs(paragraphs, 3)
+            return "\n".join(p.get_text(strip=True) for p in filtered_paragraphs)
+        else:
+            return f"Failed to fetch the page at {url}. Status code: {response.status_code}"
+    except Exception as e:
+        return f"Error fetching URL {url}: {e}"
+
+
+def scrape_custom_json(json_url, save_path):
+    """ Scrape articles from a custom JSON file and save to GitHub. """
+    try:
+        # Fetch the JSON file
+        response = requests.get(json_url)
+        if response.status_code == 200:
+            news_data = response.json()
+            # Extract up to 4 articles
+            news_articles = news_data.get("news", [])[:4]
+            output_data = {"news": []}
+            for news in news_articles:
+                title = news.get("title", "")
+                href = news.get("href", "")
+                if href:
+                    content = scrape_custom_content(href)
+                    # Append article data to the output list
+                    output_data["news"].append({
+                        "title": title,
+                        "href": href,
+                        "content": content
+                    })
+            # Save the data to GitHub
+            save_to_github(save_path, output_data)
+            return {"message": f"Scraping complete for {json_url}.", "articles": len(output_data["news"])}
+        else:
+            return {"error": f"Failed to fetch the JSON file. Status code: {response.status_code}"}
+    except Exception as e:
+        return {"error": f"An error occurred: {str(e)}"}
+
+
+@app.route('/scrape/custom/<category>', methods=['GET'])
+def scrape_custom_category(category):
+    """ Endpoint to scrape custom JSON files for specific categories. """
+    custom_json_sources = {
+        "sport": {
+            "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/sport.json",
+            "save_path": "zbc/sport.json"
+        },
+        "business": {
+            "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/business.json",
+            "save_path": "zbc/business.json"
+        },
+        "local": {
+            "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/local.json",
+            "save_path": "zbc/local.json"
+        }
+    }
+    if category in custom_json_sources:
+        source = custom_json_sources[category]
+        result = scrape_custom_json(source["url"], source["save_path"])
+        if "error" in result:
+            return jsonify(result), 500
+        else:
+            return jsonify(result), 200
+    else:
+        return jsonify({"error": "Category not found"}), 404
+
 @app.route('/scrape/category/<category>', methods=['GET'])
 def scrape_category(category):
     """Endpoint to scrape a specific category and save data to GitHub."""
