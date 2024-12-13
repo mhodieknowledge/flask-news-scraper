@@ -306,15 +306,15 @@ def scrape_custom_json(json_url, save_path):
 def scrape_custom_category(category):
     """ Endpoint to scrape custom JSON files for specific categories. """
     custom_json_sources = {
-        "sport": {
+        "sports": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/sport.json",
             "save_path": "zbc/sport.json"
         },
-        "business": {
+        "busines": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/business.json",
             "save_path": "zbc/business.json"
         },
-        "local": {
+        "locals": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/local.json",
             "save_path": "zbc/local.json"
         }
