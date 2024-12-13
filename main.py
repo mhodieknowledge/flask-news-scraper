@@ -350,52 +350,29 @@ def scrape_category(category):
     else:
         return jsonify({"error": "Category not found"}), 404
 
-@app.route('/scrape/process-custom-rss', methods=['GET'])
-def process_all_custom_rss():
+@app.route('/scrape/process-custom-rss/<filename>', methods=['GET'])
+def process_specific_rss(filename):
     """
-    Endpoint to process all custom RSS JSON files.
+    Endpoint to process a specific custom RSS JSON file.
+    
+    :param filename: Name of the custom RSS JSON file (e.g., "business.json").
     """
     custom_rss_dir = "/custom-rss"
-    results = {}
+    json_path = os.path.join(custom_rss_dir, filename)
     
-    try:
-        # Iterate through JSON files in custom-rss directory
-        for filename in os.listdir(custom_rss_dir):
-            if filename.endswith('.json'):
-                category = filename.split('.')[0]  # Extract category from filename
-                json_path = os.path.join(custom_rss_dir, filename)
-                
-                # Additional route to process a specific category
-                @app.route(f'/process-custom-rss/{category}', methods=['GET'])
-                def process_specific_category():
-                    output_file = process_custom_rss_json(json_path, category)
-                    
-                    if output_file:
-                        return jsonify({
-                            "message": f"Scraped articles for {category} and saved to {output_file}",
-                            "articles_count": len(json.load(open(output_file))['news'])
-                        }), 200
-                    else:
-                        return jsonify({"error": f"Failed to scrape {category}."}), 500
-                
-                output_file = process_custom_rss_json(json_path, category)
-                
-                if output_file:
-                    results[category] = {
-                        "status": "success",
-                        "output_file": output_file,
-                        "articles_count": len(json.load(open(output_file))['news'])
-                    }
-                else:
-                    results[category] = {
-                        "status": "failed"
-                    }
-        
-        return jsonify(results), 200
+    if not os.path.isfile(json_path):
+        return jsonify({"error": f"File {filename} does not exist in {custom_rss_dir}"}), 404
     
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
+    category = filename.split('.')[0]  # Extract category from filename
+    output_file = process_custom_rss_json(json_path, category)
+    
+    if output_file:
+        return jsonify({
+            "message": f"Scraped articles for {category} and saved to {output_file}",
+            "articles_count": len(json.load(open(output_file))['news'])
+        }), 200
+    else:
+        return jsonify({"error": f"Failed to process {filename}."}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
