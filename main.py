@@ -365,9 +365,11 @@ def process_specific_rss(filename):
     
     :param filename: Name of the custom RSS JSON file (e.g., "business.json").
     """
-    category = filename.split('.')[0]  # Extract category from filename
+    # Extract category from filename (e.g., "business.json" -> "business")
+    category = filename.split('.')[0]  
     json_file = f"custom-rss/{filename}"
     
+    # Use the process_custom_rss_json function to fetch, process, and save data
     processed_file = process_custom_rss_json(json_file, category)
     
     if processed_file:
