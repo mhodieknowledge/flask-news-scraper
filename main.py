@@ -59,7 +59,7 @@ feeds = {
 # Category configuration
 categories = {
     "business": "https://www.zbcnews.co.zw/category/business/",
-    "local": "https://www.zbcnews.co.zw/category/local-news/",
+    "local-news": "https://www.zbcnews.co.zw/category/local-news",
     "sport": "https://www.zbcnews.co.zw/category/sport/",
 }
 
