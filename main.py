@@ -22,7 +22,7 @@ user_agents = [
 ]
 
 # GitHub configuration
-github_token = "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"
+github_token = "GITHUB_TOKEN"
 repo_owner = "zeroteq"
 repo_name = "flask-news-scraper"
 branch = "main"
@@ -59,13 +59,13 @@ feeds = {
 # Category configuration
 categories = {
     "business": "https://www.zbcnews.co.zw/category/business/",
-    "local-news": "https://www.zbcnews.co.zw/category/local-news",
-    "sport": "https://www.zbcnews.co.zw/category/sports/",
+    "trending": "https://www.zbcnews.co.zw/category/local-news",
+    "sport": "https://www.zbcnews.co.zw/category/sport/",
 }
 
 json_files = {
     "business": "custom-rss/business.json",
-    "local-news": "custom-rss/local.json",
+    "local": "custom-rss/local.json",
     "sport": "custom-rss/sport.json",
 }
 
