@@ -1,48 +1,70 @@
 {
     "news": [
         {
+            "title": "Gwanda treated to free professional boxing",
+            "href": "https://www.zbcnews.co.zw/gwanda-treated-to-free-professional-boxing/",
+            "img_url": null,
+            "category": "Sport"
+        },
+        {
             "title": "T20 decider promises fireworks",
-            "href": "https://www.zbcnews.co.zw/t20-decider-promises-fireworks/"
+            "href": "https://www.zbcnews.co.zw/t20-decider-promises-fireworks/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "Gems advance to  semifinals of Africa Netball Cup",
-            "href": "https://www.zbcnews.co.zw/gems-advance-to-semifinals-of-africa-netball-cup/"
+            "href": "https://www.zbcnews.co.zw/gems-advance-to-semifinals-of-africa-netball-cup/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "Simba Bhora restructures",
-            "href": "https://www.zbcnews.co.zw/simba-bhora-restructures/"
+            "href": "https://www.zbcnews.co.zw/simba-bhora-restructures/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "Construction of 10 000-seater Chahwanda stadium progressing steadily",
-            "href": "https://www.zbcnews.co.zw/construction-of-10-000-seater-chahwanda-stadium-progressing-steadily/"
-        },
-        {
-            "title": "President Mnangagwa applauds Sables following  stellar year",
-            "href": "https://www.zbcnews.co.zw/president-mnangangwa-applauds-sables-following-stellar-year/"
+            "href": "https://www.zbcnews.co.zw/construction-of-10-000-seater-chahwanda-stadium-progressing-steadily/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "Tiger Woods to compete for first time since back surgery at PNC Championship with son",
-            "href": "https://www.zbcnews.co.zw/tiger-woods-to-compete-for-first-time-since-back-surgery-at-pnc-championship-with-son/"
+            "href": "https://www.zbcnews.co.zw/tiger-woods-to-compete-for-first-time-since-back-surgery-at-pnc-championship-with-son/",
+            "img_url": null,
+            "category": "Sport"
+        },
+        {
+            "title": "President Mnangagwa applauds Sables following  stellar year",
+            "href": "https://www.zbcnews.co.zw/president-mnangangwa-applauds-sables-following-stellar-year/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "GEMS EYE WINNING STREAK AGAINST NAMIBIA",
-            "href": "https://www.zbcnews.co.zw/gems-eye-winning-streak-against-namibia/"
+            "href": "https://www.zbcnews.co.zw/gems-eye-winning-streak-against-namibia/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "PSL credits corporates and local authorities for successful season",
-            "href": "https://www.zbcnews.co.zw/psl-credits-corporates-and-local-authorities-for-successful-season/"
+            "href": "https://www.zbcnews.co.zw/psl-credits-corporates-and-local-authorities-for-successful-season/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "Gems shine at Africa Nations Cup",
-            "href": "https://www.zbcnews.co.zw/gems-shine-in-the-africa-nations-cup/"
+            "href": "https://www.zbcnews.co.zw/gems-shine-in-the-africa-nations-cup/",
+            "img_url": null,
+            "category": "Sport"
         },
         {
             "title": "CABS Candidates Chess tournament uncovers talent",
-            "href": "https://www.zbcnews.co.zw/cabs-candidates-chess-tournament-uncovers-talent/"
-        },
-        {
-            "title": "Zimbabwe begin Africa Netball Cup campaign on a high note",
-            "href": "https://www.zbcnews.co.zw/zimbabwe-begin-africa-netball-cup-campaign-on-a-high-note/"
+            "href": "https://www.zbcnews.co.zw/cabs-candidates-chess-tournament-uncovers-talent/",
+            "img_url": null,
+            "category": "Sport"
         }
     ]
 }
