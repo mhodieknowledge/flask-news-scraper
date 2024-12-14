@@ -22,7 +22,7 @@ user_agents = [
 ]
 
 # GitHub configuration
-github_token = os.getenv("GITHUB_TOKEN")
+github_token = "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"
 repo_owner = "zeroteq"
 repo_name = "flask-news-scraper"
 branch = "main"
@@ -60,12 +60,12 @@ feeds = {
 categories = {
     "business": "https://www.zbcnews.co.zw/category/business/",
     "local-news": "https://www.zbcnews.co.zw/category/local-news",
-    "sport": "https://www.zbcnews.co.zw/category/sport/",
+    "sport": "https://www.zbcnews.co.zw/category/sports/",
 }
 
 json_files = {
     "business": "custom-rss/business.json",
-    "local": "custom-rss/local.json",
+    "local-news": "custom-rss/local.json",
     "sport": "custom-rss/sport.json",
 }
 
@@ -178,7 +178,7 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
 def scrape_category_page(url, category_name):
-    """Scrape a specific category page for articles."""
+    """Scrape a specific category page for articles, avoiding duplicates."""
     headers = {"User-Agent": random.choice(user_agents)}
     response = requests.get(url, headers=headers)
 
@@ -186,14 +186,24 @@ def scrape_category_page(url, category_name):
         soup = BeautifulSoup(response.content, "html.parser")
         articles = soup.find_all("div", class_="td-module-meta-info")
 
-        # Extract title and link
+        # Use a set to track unique hrefs and prevent duplicates
+        unique_hrefs = set()
         data = []
+        
         for article in articles:
             category_tag = article.find("a", class_="td-post-category")
             if category_tag and category_tag.text.strip() == category_name.capitalize():
-                title = article.find("p", class_="entry-title td-module-title").find("a").text.strip()
-                href = article.find("p", class_="entry-title td-module-title").find("a")["href"]
-                data.append({"title": title, "href": href})
+                title_elem = article.find("p", class_="entry-title td-module-title").find("a")
+                
+                # Extract title and href
+                title = title_elem.text.strip()
+                href = title_elem["href"]
+                
+                # Only add if href is unique
+                if href not in unique_hrefs:
+                    unique_hrefs.add(href)
+                    data.append({"title": title, "href": href})
+        
         return data
     else:
         print(f"Failed to scrape {category_name}. Status code: {response.status_code}")
@@ -293,7 +303,7 @@ def scrape_custom_json(json_url, save_path):
         if response.status_code == 200:
             news_data = response.json()
             # Extract up to 4 articles
-            news_articles = news_data.get("news", [])[:4]
+            news_articles = news_data.get("news", [])[:10]
             output_data = {"news": []}
             for news in news_articles:
                 title = news.get("title", "")
