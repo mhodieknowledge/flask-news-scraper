@@ -59,15 +59,16 @@ feeds = {
 # Category configuration
 categories = {
     "business": "https://www.zbcnews.co.zw/category/business/",
-    "trending": "https://www.zbcnews.co.zw/category/local-news",
+    "local-news": "https://www.zbcnews.co.zw/category/local-news/",
     "sport": "https://www.zbcnews.co.zw/category/sport/",
 }
 
 json_files = {
     "business": "custom-rss/business.json",
-    "local": "custom-rss/local.json",
+    "local-news": "custom-rss/local.json",
     "sport": "custom-rss/sport.json",
 }
+
 
 def fetch_rss_feed(rss_url, max_articles=10):
     """Fetch URLs, descriptions, titles, and other metadata from the RSS feed."""
@@ -79,7 +80,8 @@ def fetch_rss_feed(rss_url, max_articles=10):
                 "title": entry.title,
                 "url": entry.link,
                 "description": html.unescape(entry.summary),
-                "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%Y-%m-%d %H:%M:%S')
+                "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
+                "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
             }
             articles.append(article)
     return articles
@@ -132,6 +134,7 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
         description = article["description"]
         title = article["title"]
         time = article["time"]
+        date = article["date"]
         print(f"Scraping {url}...")
         data = scrape_article_content(url, content_class, image_class, custom_image_url)
         if data:
@@ -141,7 +144,8 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
                 "content": data["content"],
                 "image_url": data["image_url"],
                 "description": description,
-                "time": time
+                "time": time,
+                "date":date
             })
         else:
             print(f"Failed to scrape {url}")
@@ -177,32 +181,86 @@ def scrape_and_save_to_github(rss_url, content_class, image_class, json_file, cu
     else:
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
 
+def find_image_url(article):
+    """
+    Try multiple methods to find the image URL for an article
+    Returns the first found image URL or None
+    """
+    # Method 1: Look in the same article div for data-img-url
+    img_tag = article.find("span", attrs={"data-img-url": True})
+    if img_tag:
+        return img_tag.get("data-img-url")
+    
+    # Method 2: Look for img tags with src attribute
+    img_tag = article.find("img", src=True)
+    if img_tag:
+        return img_tag.get("src")
+    
+    # Method 3: Search for image in a wider context within the page
+    # If the article div contains a link to the full article, 
+    # try finding the image near that link
+    article_link = article.find("a", href=True)
+    if article_link:
+        # Look in the parent or nearby divs for an image
+        nearby_img = article_link.find_parent().find("img", src=True)
+        if nearby_img:
+            return nearby_img.get("src")
+    
+    # Method 4: If you know a specific pattern, add more targeted searches
+    # For example, looking in a specific class or data attribute
+    alternative_img_tag = article.find("div", class_="td-image-container").find("img", src=True) if article.find("div", class_="td-image-container") else None
+    if alternative_img_tag:
+        return alternative_img_tag.get("src")
+    
+    # If all methods fail, return None
+    return None
+
 def scrape_category_page(url, category_name):
     """Scrape a specific category page for articles, avoiding duplicates."""
+    # Map the category to the expected display name (category_class)
+    category_mapping = {
+        "sport": "Sport",
+        "local-news": "Local News",
+        "business": "Business"
+    }
+    category_class = category_mapping.get(category_name, category_name.capitalize())  # Default to capitalized name
+
     headers = {"User-Agent": random.choice(user_agents)}
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, "html.parser")
-        articles = soup.find_all("div", class_="td-module-meta-info")
-
-        # Use a set to track unique hrefs and prevent duplicates
-        unique_hrefs = set()
-        data = []
         
+        # You might need to adjust this to find all potential article containers
+        articles = soup.find_all(["div", "article"], class_=lambda x: x and ("module" in x or "article" in x))
+
+        unique_hrefs = set()  # Use a set to track unique article URLs
+        data = []
+
         for article in articles:
+            # Get the category of the article
             category_tag = article.find("a", class_="td-post-category")
-            if category_tag and category_tag.text.strip() == category_name.capitalize():
+            if category_tag and category_tag.text.strip() == category_class:
+                # Get the title and href
                 title_elem = article.find("p", class_="entry-title td-module-title").find("a")
-                
-                # Extract title and href
-                title = title_elem.text.strip()
-                href = title_elem["href"]
-                
-                # Only add if href is unique
-                if href not in unique_hrefs:
-                    unique_hrefs.add(href)
-                    data.append({"title": title, "href": href})
+                if title_elem:
+                    title = title_elem.text.strip()
+                    href = title_elem["href"]                    
+                    
+                    # Find image URL using multiple methods
+                    img_url = find_image_url(article)
+                    
+                    # Avoid duplicate articles
+                    if href not in unique_hrefs:
+                        unique_hrefs.add(href)
+                        data.append({
+                            "title": title,
+                            "href": href,
+                            "img_url": img_url,  # This might be None if no image found
+                            "category": category_class,
+                            "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
+                            "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
+                        })
         
         return data
     else:
@@ -303,18 +361,21 @@ def scrape_custom_json(json_url, save_path):
         if response.status_code == 200:
             news_data = response.json()
             # Extract up to 4 articles
-            news_articles = news_data.get("news", [])[:10]
+            news_articles = news_data.get("news", [])[:5]
             output_data = {"news": []}
             for news in news_articles:
                 title = news.get("title", "")
-                href = news.get("href", "")
+                href = news.get("href", "")                
                 if href:
                     content = scrape_custom_content(href)
+                                 
                     # Append article data to the output list
                     output_data["news"].append({
                         "title": title,
                         "href": href,
-                        "content": content
+                        "content": content,
+                        "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
+                            "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')           
                     })
             # Save the data to GitHub
             save_to_github(save_path, output_data)
@@ -329,17 +390,17 @@ def scrape_custom_json(json_url, save_path):
 def scrape_custom_category(category):
     """ Endpoint to scrape custom JSON files for specific categories. """
     custom_json_sources = {
-        "sports": {
+        "sport": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/sport.json",
             "save_path": "zbc/sport.json"
         },
-        "busines": {
+        "business": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/business.json",
             "save_path": "zbc/business.json"
         },
-        "locals": {
+        "local-news": {
             "url": "https://raw.githubusercontent.com/zeroteq/flask-news-scraper/main/custom-rss/local.json",
-            "save_path": "zbc/local.json"
+            "save_path": "zbc/local-news.json"
         }
     }
     if category in custom_json_sources:
@@ -369,4 +430,4 @@ def scrape_category(category):
         return jsonify({"error": "Category not found"}), 404
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
