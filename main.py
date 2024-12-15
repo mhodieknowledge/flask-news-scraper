@@ -22,7 +22,7 @@ user_agents = [
 ]
 
 # GitHub configuration
-github_token = "GITHUB_TOKEN"
+github_token = github_token = os.getenv('GITHUB_TOKEN')
 repo_owner = "zeroteq"
 repo_name = "flask-news-scraper"
 branch = "main"
