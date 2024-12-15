@@ -2,49 +2,19 @@ name: Scrape News Feeds
 
 on:
   schedule:
-    - cron: "0 4 * * *"   # Business at 6:00 AM CAT
-    - cron: "30 4 * * *"  # Sport at 6:30 AM CAT
-    - cron: "50 4 * * *"  # Local at 6:50 AM CAT
-    - cron: "0 6,18 * * *" # Herald at 8:00 AM & 8:00 PM CAT (UTC -2)
-    - cron: "15 6,18 * * *" # Chronicle at 8:15 AM & 8:15 PM CAT (UTC -2)
-    - cron: "30 6,18 * * *" # NewZimbabwe at 8:30 AM & 8:30 PM CAT (UTC -2)
-    - cron: "45 6,18 * * *" # ZimEye at 8:45 AM & 8:45 PM CAT (UTC -2)
+    - cron: "0 4,16 * * *"  # /scrape/herald at 6:00 AM & 6:00 PM CAT
+    - cron: "10 4,16 * * *" # /scrape/chronicle at 6:10 AM & 6:10 PM CAT
+    - cron: "20 4,16 * * *" # /scrape/zimeye at 6:20 AM & 6:20 PM CAT
+    - cron: "30 4,16 * * *" # /scrape/newzimbabwe at 6:30 AM & 6:30 PM CAT
+    - cron: "0 6,18 * * *"  # /scrape/category/sport at 8:00 AM & 8:00 PM CAT
+    - cron: "10 6,18 * * *" # /scrape/category/local-news at 8:10 AM & 8:10 PM CAT
+    - cron: "20 6,18 * * *" # /scrape/category/business at 8:20 AM & 8:20 PM CAT
+    - cron: "0 7,19 * * *"  # /scrape/custom/local-news at 9:00 AM & 9:00 PM CAT
+    - cron: "20 7,19 * * *" # /scrape/custom/business at 9:20 AM & 9:20 PM CAT
+    - cron: "40 7,19 * * *" # /scrape/custom/sport at 9:40 AM & 9:40 PM CAT
   workflow_dispatch:
 
 jobs:
-  business-scrape:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Scrape Business Category
-      run: |
-        echo "Scraping Business category..."
-        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/business")
-        echo "Vercel Response: $response"
-
-  sport-scrape:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Scrape Sport Category
-      run: |
-        echo "Scraping Sport category..."
-        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/sport")
-        echo "Vercel Response: $response"
-
-  local-scrape:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Scrape Local Category
-      run: |
-        echo "Scraping Local category..."
-        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/local")
-        echo "Vercel Response: $response"
-
   herald-scrape:
     runs-on: ubuntu-latest
     steps:
@@ -67,6 +37,17 @@ jobs:
         response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/chronicle")
         echo "Vercel Response: $response"
 
+  zimeye-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape ZimEye News
+      run: |
+        echo "Scraping ZimEye news..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/zimeye")
+        echo "Vercel Response: $response"
+
   newzimbabwe-scrape:
     runs-on: ubuntu-latest
     steps:
@@ -78,13 +59,68 @@ jobs:
         response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/newzimbabwe")
         echo "Vercel Response: $response"
 
-  zimeye-scrape:
+  category-sport-scrape:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Scrape ZimEye News
+    - name: Scrape Sport Category
       run: |
-        echo "Scraping ZimEye news..."
-        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/zimeye")
+        echo "Scraping Sport category..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/sport")
+        echo "Vercel Response: $response"
+
+  category-local-news-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Local News Category
+      run: |
+        echo "Scraping Local News category..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/local-news")
+        echo "Vercel Response: $response"
+
+  category-business-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Business Category
+      run: |
+        echo "Scraping Business category..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/category/business")
+        echo "Vercel Response: $response"
+
+  custom-local-news-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Custom Local News
+      run: |
+        echo "Scraping Custom Local News..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/custom/local-news")
+        echo "Vercel Response: $response"
+
+  custom-business-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Custom Business News
+      run: |
+        echo "Scraping Custom Business News..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/custom/business")
+        echo "Vercel Response: $response"
+
+  custom-sport-scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Scrape Custom Sport News
+      run: |
+        echo "Scraping Custom Sport News..."
+        response=$(curl -X GET "https://flask-news-scraper.vercel.app/scrape/custom/sport")
         echo "Vercel Response: $response"
