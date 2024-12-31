@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Infrastructure development changes face of Harare",
+            "href": "https://www.zbcnews.co.zw/infrastructure-development-changes-harares-face/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/FB_IMG_1735648828931-324x400.jpg",
+            "category": "Local News",
+            "time": "18:07",
+            "date": "31 Dec 2024"
+        },
+        {
+            "title": "Government set to unveil new child online protection policy",
+            "href": "https://www.zbcnews.co.zw/government-set-to-unveil-new-child-online-protection-policy/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG_20241231_173944-324x292.jpg",
+            "category": "Local News",
+            "time": "18:07",
+            "date": "31 Dec 2024"
+        },
+        {
             "title": "Transport operators urged to shun unreasonable daily targets",
             "href": "https://www.zbcnews.co.zw/transport-operators-urged-to-shun-unreasonable-daily-targets/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/WUirRuVJ_400x400.png",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/youths-rally-each-other-to-play-role-in-national-development/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Screenshot-2024-12-29-132459-324x365.png",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
@@ -21,23 +37,23 @@
             "href": "https://www.zbcnews.co.zw/47-murder-cases-reported-between-20-and-26-december-2024/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/crime-scene-324x400.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
             "title": "77 people killed in more than 1 000 accidents",
             "href": "https://www.zbcnews.co.zw/77-people-killed-in-more-than-1-000-accidents/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Pile-on-accident-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Pile-on-accident-696x442.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
             "title": "Zimbabwe students excel in Cambridge examinations",
             "href": "https://www.zbcnews.co.zw/zimbabwe-students-excel-in-cambridge-examinations/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Zimbabwe-Exams-324x392.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Zimbabwe-Exams.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
@@ -45,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/pottery-saves-chitungwiza-man-from-drug-addiction/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241226-WA0031-696x522.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
@@ -53,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/govt-works-to-ease-bulawayo-water-crisis/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241226-WA0016-696x522.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         },
         {
@@ -61,23 +77,7 @@
             "href": "https://www.zbcnews.co.zw/christmas-behind-bars/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241225-WA0060-696x522.jpg",
             "category": "Local News",
-            "time": "09:46",
-            "date": "31 Dec 2024"
-        },
-        {
-            "title": "Christmas gifts: Families welcome newborns on joyous holiday",
-            "href": "https://www.zbcnews.co.zw/christmas-gifts-families-welcome-newborns-on-joyous-holiday/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG_20241225_173831-696x688.jpg",
-            "category": "Local News",
-            "time": "09:46",
-            "date": "31 Dec 2024"
-        },
-        {
-            "title": "Meet and Greet initiative excites tourists",
-            "href": "https://www.zbcnews.co.zw/meet-and-greet-initiative-excites-tourists/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Gff3w1sWgAABy-C-696x447.jpg",
-            "category": "Local News",
-            "time": "09:46",
+            "time": "18:07",
             "date": "31 Dec 2024"
         }
     ]
