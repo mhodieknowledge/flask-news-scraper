@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Mat North undergoes massive transformation through infrastructure development",
+            "href": "https://www.zbcnews.co.zw/mat-north-undergoes-massive-transformation-through-infrastructure-development/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/IMG-20250101-WA0033-324x400.jpg",
+            "category": "Local News",
+            "time": "18:07",
+            "date": "01 Jan 2025"
+        },
+        {
+            "title": "Five years after Cyclone Idai: Stories of resilience and recovery",
+            "href": "https://www.zbcnews.co.zw/five-years-after-cyclone-idai-stories-of-resilience-and-recovery/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/WhatsApp-Image-2024-03-14-at-17.04.45-768x512-1-324x400.jpeg",
+            "category": "Local News",
+            "time": "18:07",
+            "date": "01 Jan 2025"
+        },
+        {
             "title": "Infrastructure development changes face of Harare",
             "href": "https://www.zbcnews.co.zw/infrastructure-development-changes-harares-face/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/FB_IMG_1735648828931-324x400.jpg",
             "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/government-set-to-unveil-new-child-online-protection-policy/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG_20241231_173944-324x292.jpg",
             "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
@@ -21,23 +37,15 @@
             "href": "https://www.zbcnews.co.zw/transport-operators-urged-to-shun-unreasonable-daily-targets/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/WUirRuVJ_400x400.png",
             "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
             "title": "Youths rally each other to play role in national development",
             "href": "https://www.zbcnews.co.zw/youths-rally-each-other-to-play-role-in-national-development/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Screenshot-2024-12-29-132459-324x365.png",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Screenshot-2024-12-29-132459.png",
             "category": "Local News",
-            "time": "09:08",
-            "date": "01 Jan 2025"
-        },
-        {
-            "title": "47 murder cases reported between 20 and 26 December 2024",
-            "href": "https://www.zbcnews.co.zw/47-murder-cases-reported-between-20-and-26-december-2024/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/crime-scene-324x400.jpeg",
-            "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
@@ -45,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/77-people-killed-in-more-than-1-000-accidents/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Pile-on-accident-696x442.jpg",
             "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
@@ -53,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/zimbabwe-students-excel-in-cambridge-examinations/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/Zimbabwe-Exams.jpg",
             "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         },
         {
@@ -61,23 +69,7 @@
             "href": "https://www.zbcnews.co.zw/pottery-saves-chitungwiza-man-from-drug-addiction/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241226-WA0031-696x522.jpg",
             "category": "Local News",
-            "time": "09:08",
-            "date": "01 Jan 2025"
-        },
-        {
-            "title": "Govt works to ease Bulawayo water crisis",
-            "href": "https://www.zbcnews.co.zw/govt-works-to-ease-bulawayo-water-crisis/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241226-WA0016-696x522.jpg",
-            "category": "Local News",
-            "time": "09:08",
-            "date": "01 Jan 2025"
-        },
-        {
-            "title": "Exploring Christmas behind bars",
-            "href": "https://www.zbcnews.co.zw/christmas-behind-bars/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2024/12/IMG-20241225-WA0060-696x522.jpg",
-            "category": "Local News",
-            "time": "09:08",
+            "time": "18:07",
             "date": "01 Jan 2025"
         }
     ]
