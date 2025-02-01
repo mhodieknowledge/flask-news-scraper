@@ -1,11 +1,19 @@
 {
     "news": [
         {
+            "title": "Collaborative effort brings much-needed healthcare assistance to Mt Darwin",
+            "href": "https://www.zbcnews.co.zw/collaborative-effort-brings-much-needed-healthcare-assistance-to-mt-darwin/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/IMG-20250201-WA0100-324x400.jpg",
+            "category": "Local News",
+            "time": "21:26",
+            "date": "01 Feb 2025"
+        },
+        {
             "title": "ZBC shines at Zim Community Awards",
             "href": "https://www.zbcnews.co.zw/zbc-shines-at-zim-community-awards/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/475842933_591822163758322_7369819224049199974_n-324x400.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -13,7 +21,7 @@
             "href": "https://www.zbcnews.co.zw/mathendele-primary-school-commissioned/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-01-at-10.30.26-324x400.jpeg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -21,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/zim-sets-30-years-minimum-age-for-public-service-vehicle-drivers/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/5iikx2CgaCMHMAqyhUeNdVputRmJCUovEyMqIIxB-324x400.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -29,15 +37,15 @@
             "href": "https://www.zbcnews.co.zw/govt-forges-ahead-with-the-implementation-of-people-centred-development-programmes/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-31-at-16.25.36-1-324x400.jpeg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
             "title": "Tragedy strikes in Harare\u2019s Adelaide Park as young boy (11) drowns in abandoned pit",
             "href": "https://www.zbcnews.co.zw/tragedy-strikes-in-harares-adelaide-park-as-young-boy-11-drowns-in-abandoned-pit/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/IMG-20250130-WA0035-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/IMG-20250130-WA0035.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -45,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/mutare-farmer-reaps-huge-from-snail-production/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/Snail-696x440.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -53,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/11-year-old-ugandan-pan-africanists-adventure-continues-in-vic-falls/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-30-at-11.58.49-696x392.jpeg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -61,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/eu-diplomats-partner-government-in-fighting-gbv/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/Screenshot-2025-01-29-162005-696x385.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -69,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/cultural-heritage-preservation-through-ai/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/Screenshot-2025-01-29-161120-696x410.jpg",
             "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         },
         {
@@ -77,15 +85,7 @@
             "href": "https://www.zbcnews.co.zw/2-ecd-learners-swept-away-by-floods/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/manicalnd-floods-696x522.jpg",
             "category": "Local News",
-            "time": "21:04",
-            "date": "01 Feb 2025"
-        },
-        {
-            "title": "Chirumanzu RDC receives motorbikes",
-            "href": "https://www.zbcnews.co.zw/chirumanzu-rdc-receives-motorbikes/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/01/318c92fa-8425-4cdc-84ce-e529253edf8a-1-696x522.jpg",
-            "category": "Local News",
-            "time": "21:04",
+            "time": "21:26",
             "date": "01 Feb 2025"
         }
     ]
