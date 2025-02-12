@@ -1,11 +1,35 @@
 {
     "news": [
         {
+            "title": "Cricket analysts call for a change of mindset",
+            "href": "https://www.zbcnews.co.zw/cricket-analysts-call-for-a-change-of-mindset-2/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/cricket-analyst3-324x400.jpg",
+            "category": "Sport",
+            "time": "18:08",
+            "date": "12 Feb 2025"
+        },
+        {
+            "title": "Pasuwa appointed Malawi National team\u2019s head coach",
+            "href": "https://www.zbcnews.co.zw/pasuwa-appointed-malawi-national-teams-head-coach/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-12-at-12.28.47-324x400.jpeg",
+            "category": "Sport",
+            "time": "18:08",
+            "date": "12 Feb 2025"
+        },
+        {
+            "title": "Cricket analysts call for a change of mindset",
+            "href": "https://www.zbcnews.co.zw/cricket-analysts-call-for-a-change-of-mindset/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-12-at-12.18.19-324x400.jpeg",
+            "category": "Sport",
+            "time": "18:08",
+            "date": "12 Feb 2025"
+        },
+        {
             "title": "FIFA bans Highlanders from signing players",
             "href": "https://www.zbcnews.co.zw/fifa-bans-highlanders-from-signing-players/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/FB_IMG_1739100095782-324x400.jpg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
@@ -13,31 +37,31 @@
             "href": "https://www.zbcnews.co.zw/warriors-to-play-two-group-b-matches-in-morocco/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-07-at-13.20.08-324x400.jpeg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
             "title": "Mash Central braces for NASH tourney",
             "href": "https://www.zbcnews.co.zw/mash-central-braces-for-nash-tourney/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-06-at-15.37.26-1-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-06-at-15.37.26-1-696x387.jpeg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
             "title": "Newly elected ZIFA board challenged to prioritise player welfare",
             "href": "https://www.zbcnews.co.zw/newly-elected-zifa-board-challenged-to-prioritise-player-welfare/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/2113e114-6e88-4cf0-a4b2-7ea800634fec-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/2113e114-6e88-4cf0-a4b2-7ea800634fec-696x522.jpg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
             "title": "Chevrons brace for Irish test",
             "href": "https://www.zbcnews.co.zw/chevrons-brace-for-irish-test/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-05-at-12.14.26-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-05-at-12.14.26-696x464.jpeg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
@@ -45,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/fulham-f-c-signs-zimbabwean-youngster-from-man-city/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/8dfa8ff0-e264-11ef-82c9-b507630eaffc-696x392.jpg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
@@ -53,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/simba-bhora-in-sa-for-psl-pre-season-preparations/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/475757917_122177869766254675_2759084145406567364_n-e1738684342167-696x362.jpg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
@@ -61,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/newly-elected-zifa-president-tackles-player-welfare/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/IMG-20250204-WA0026-696x464.jpg",
             "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         },
         {
@@ -69,31 +93,7 @@
             "href": "https://www.zbcnews.co.zw/record-breaking-munetsi-seals-move-to-epl/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/munetsi-1-696x392.jpg",
             "category": "Sport",
-            "time": "09:27",
-            "date": "12 Feb 2025"
-        },
-        {
-            "title": "Mighty Warriors begin 2026 WAFCON qualifiers preps",
-            "href": "https://www.zbcnews.co.zw/mighty-warriors-begin-2026-wafcon-qualifiers-preps/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-03-at-15.53.38-696x378.jpeg",
-            "category": "Sport",
-            "time": "09:27",
-            "date": "12 Feb 2025"
-        },
-        {
-            "title": "Bulawayo dominate Darts Champion of Champions tourney",
-            "href": "https://www.zbcnews.co.zw/bulawayo-dominate-darts-champion-of-champions-tourney/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-03-at-15.20.53-696x522.jpeg",
-            "category": "Sport",
-            "time": "09:27",
-            "date": "12 Feb 2025"
-        },
-        {
-            "title": "Sables prop Cleopas Kundiona Jr joins England\u2019s Northampton Saints",
-            "href": "https://www.zbcnews.co.zw/sables-prop-cleopas-kundiona-jr-joins-englands-northampton-saints/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-03-at-15.42.51.jpeg",
-            "category": "Sport",
-            "time": "09:27",
+            "time": "18:08",
             "date": "12 Feb 2025"
         }
     ]
