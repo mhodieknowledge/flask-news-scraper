@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Zimbabwe poised for economic growth, US Chamber of Commerce states at Victoria Falls Summit",
+            "href": "https://www.zbcnews.co.zw/zimbabwe-poised-for-economic-growth-us-chamber-of-commerce-states-at-victoria-falls-summit/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-27-at-12.14.44-324x400.jpeg",
+            "category": "Business",
+            "time": "18:09",
+            "date": "27 Feb 2025"
+        },
+        {
+            "title": "Economic stability on track as Zimbabwe\u2019s inflation falls",
+            "href": "https://www.zbcnews.co.zw/economic-stability-on-track-as-zimbabwes-inflation-falls/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-27-at-16.50.17-1-324x400.jpeg",
+            "category": "Business",
+            "time": "18:09",
+            "date": "27 Feb 2025"
+        },
+        {
             "title": "COMESA\u2019s yellow card scheme sees 33% surge in issuance",
             "href": "https://www.zbcnews.co.zw/comesas-yellow-card-scheme-sees-33-surge-in-issuance/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-26-at-10.43.06-1-324x400.jpeg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/african-association-of-automotive-manufacturers-laud-zim-motor-industry/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/309205224_464208325742526_5545861774416415057_n-324x400.png",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -21,23 +37,23 @@
             "href": "https://www.zbcnews.co.zw/38th-comesa-meeting-kicks-off-in-vic-falls/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-26-at-10.43.05-324x400.jpeg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
             "title": "Expo 2025 Osaka: A gateway to enhanced trade, investment for Zim and Japan",
             "href": "https://www.zbcnews.co.zw/expo-2025-osaka-a-gateway-to-enhanced-trade-investment-for-zim-and-japan/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-26-at-17.07.50-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-26-at-17.07.50-696x463.jpeg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
             "title": "Former executives bounce back as OK Zimbabwe Limited eye revival",
             "href": "https://www.zbcnews.co.zw/former-executives-bounce-back-as-ok-zimbabwe-limited-eye-revival/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/zimbabwe_ok_supermarkets-324x338.webp",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/zimbabwe_ok_supermarkets.webp",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -45,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/afdb-predicts-5-3-growth-for-zims-economy-in-2025/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/Increase-Economic-growth-1024x536-1-696x364.jpg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -53,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/real-estate-led-investment-inflows-in-2024/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/1690875285801-696x381.jpg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -61,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/timb-introduces-new-regulations-for-tobacco-sales/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/Tobacco-5.png",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -69,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/zimbabwe-un-tourism-to-establish-culinary-academy-in-victoria-falls/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/IMG-20250219-WA0040-696x522.jpg",
             "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         },
         {
@@ -77,23 +93,7 @@
             "href": "https://www.zbcnews.co.zw/local-authorities-challenged-to-enhance-investment-climate/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-19-at-13.44.46-696x521.jpeg",
             "category": "Business",
-            "time": "09:29",
-            "date": "27 Feb 2025"
-        },
-        {
-            "title": "Bulawayo hosts NCC\u2019s inaugural competitiveness summit",
-            "href": "https://www.zbcnews.co.zw/bulawayo-hosts-nccs-inaugural-competitiveness-summit/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-19-at-11.41.27-696x522.jpeg",
-            "category": "Business",
-            "time": "09:29",
-            "date": "27 Feb 2025"
-        },
-        {
-            "title": "ZANU PF\u2019s economic cluster engages Bulawayo industry",
-            "href": "https://www.zbcnews.co.zw/zanu-pfs-economic-cluster-engages-bulawayo-industry/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-14-at-11.58.39-696x522.jpeg",
-            "category": "Business",
-            "time": "09:29",
+            "time": "18:09",
             "date": "27 Feb 2025"
         }
     ]
