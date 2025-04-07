@@ -1,11 +1,35 @@
 {
     "news": [
         {
+            "title": "ERSL secures first major sponsor in over 20 years",
+            "href": "https://www.zbcnews.co.zw/ersl-secures-first-major-sponsor-in-over-20-years/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-07-at-14.20.08-324x400.jpeg",
+            "category": "Sport",
+            "time": "18:32",
+            "date": "07 Apr 2025"
+        },
+        {
+            "title": "Triumphant return, Kuipers wins Gold at Africa Triathlon Championships",
+            "href": "https://www.zbcnews.co.zw/triumphant-return-kuipers-wins-gold-at-africa-triathlon-championships/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-07-at-9.35.29-AM-324x400.jpeg",
+            "category": "Sport",
+            "time": "18:32",
+            "date": "07 Apr 2025"
+        },
+        {
+            "title": "Ngezi reclaim PSL top spot",
+            "href": "https://www.zbcnews.co.zw/ngezi-reclaim-psl-top-spot/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-06-at-7.44.29-PM-1-324x400.jpeg",
+            "category": "Sport",
+            "time": "18:32",
+            "date": "07 Apr 2025"
+        },
+        {
             "title": "HILLSIDE Teacher\u2019s college constructs a Beach Football Facility",
             "href": "https://www.zbcnews.co.zw/hillside-teachers-college-constructs-a-beach-football-facility/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/Beach-Football-1-324x400.jpg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
@@ -13,31 +37,31 @@
             "href": "https://www.zbcnews.co.zw/gibbo-stadium-renovation-works-complete/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/gibbo-324x400.jpg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
             "title": "Old Hararians crowned 2025 Nedbank Rugby Challenge winners",
             "href": "https://www.zbcnews.co.zw/old-hararians-dethrone-sportivo-as-they-were-crowned-the-2025-nedbank-rugby-challenge-winners/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-06-at-8.21.28-AM-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-06-at-8.21.28-AM-696x566.jpeg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
             "title": "Defending champions Simba Bhora secure second win",
             "href": "https://www.zbcnews.co.zw/defending-champions-simba-bhora-secure-second-win/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/IMG-20250406-WA0001-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/IMG-20250406-WA0001-696x463.jpg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
             "title": "Zim U23 Baseball team in camp ahead of Regional qualifiers",
             "href": "https://www.zbcnews.co.zw/zim-u23-baseball-team-in-camp-ahead-of-regional-qualifiers/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/o-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/o-696x392.jpg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
@@ -45,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/triangle-united-eye-first-win-at-renovated-gibbo/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-3.10.09-PM-1-696x402.jpeg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
@@ -53,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/ngezi-platinum-seek-to-extend-lead-against-struggling-caps-united/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-1.37.42-PM-696x468.jpeg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
@@ -61,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/national-chess-championship-set-for-the-second-week-of-april/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-10.25.56-AM-696x423.jpeg",
             "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         },
         {
@@ -69,31 +93,7 @@
             "href": "https://www.zbcnews.co.zw/zifa-committee-set-to-engage-foreign-based-players/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-11.52.45-AM-696x696.jpeg",
             "category": "Sport",
-            "time": "09:32",
-            "date": "07 Apr 2025"
-        },
-        {
-            "title": "Gilbert Sengwe joins elite list of Zimbabweans licensed by the English FA",
-            "href": "https://www.zbcnews.co.zw/gilbert-sengwe-joins-elite-list-of-zimbabweans-licensed-by-the-english-fa/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-8.04.46-AM-696x522.jpeg",
-            "category": "Sport",
-            "time": "09:32",
-            "date": "07 Apr 2025"
-        },
-        {
-            "title": "Mashonaland West province retains top position at NASH games",
-            "href": "https://www.zbcnews.co.zw/mashonaland-west-province-retains-top-position-at-nash-games/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-04-at-7.55.36-AM-696x522.jpeg",
-            "category": "Sport",
-            "time": "09:32",
-            "date": "07 Apr 2025"
-        },
-        {
-            "title": "Highlanders brace for Triangle clash",
-            "href": "https://www.zbcnews.co.zw/highlanders-brace-for-triangle-clash/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-03-at-14.49.10-696x522.jpeg",
-            "category": "Sport",
-            "time": "09:32",
+            "time": "18:32",
             "date": "07 Apr 2025"
         }
     ]
