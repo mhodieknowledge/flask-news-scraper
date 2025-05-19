@@ -1,11 +1,35 @@
 {
     "news": [
         {
+            "title": "Dynamos, CAPS United dish out classic derby",
+            "href": "https://www.zbcnews.co.zw/dynamos-caps-united-dish-out-classic-derby/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-19-at-13.39.00.jpeg",
+            "category": "Sport",
+            "time": "18:34",
+            "date": "19 May 2025"
+        },
+        {
+            "title": "FC Platinum\u2019s goal-scoring struggles continue despite unbeaten record",
+            "href": "https://www.zbcnews.co.zw/fc-platinums-goal-scoring-struggles-continue-despite-unbeaten-record/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-19-at-13.23.33.jpeg",
+            "category": "Sport",
+            "time": "18:34",
+            "date": "19 May 2025"
+        },
+        {
+            "title": "Zim netball stars set to shine in COSANA Club Championship",
+            "href": "https://www.zbcnews.co.zw/zims-netball-stars-set-to-shine-in-cosana-club-championship/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-19-at-13.17.05-1.png",
+            "category": "Sport",
+            "time": "18:34",
+            "date": "19 May 2025"
+        },
+        {
             "title": "ZIVA aims to train over 200 volleyball coaches in Mat North",
             "href": "https://www.zbcnews.co.zw/ziva-aims-to-train-over-200-volleyball-coaches-in-mat-north/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-17-at-16.41.17.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -13,7 +37,7 @@
             "href": "https://www.zbcnews.co.zw/zim-crushed-5-1-by-zambia-at-cosafa-under-17-championships/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-14-at-17.54.17.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -21,7 +45,7 @@
             "href": "https://www.zbcnews.co.zw/scottland-fc-transforms-life-of-viral-rufaro-garbage-picker-and-his-family/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-16-at-16.28.23.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -29,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/platinum-royals-seek-to-extend-winning-streak-against-mpopoma/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-15-at-17.50.51.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -37,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/zifa-pushes-coaching-development-as-goalkeepers-clinic-reaches-bulawayo/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-15-at-17.49.28.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -45,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/former-arsenal-star-sol-campbell-eyes-grassroots-football-partnership-with-zim/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/CANPELL.jpg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -53,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/saul-chaminuka-appointed-dynamos-coach/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-17.58.55.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -61,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/40230-2/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-18.05.08.jpeg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         },
         {
@@ -69,31 +93,7 @@
             "href": "https://www.zbcnews.co.zw/warriors-gear-up-for-friendlies-against-burkina-faso-and-niger/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-18.30.12.jpeg",
             "category": "Sport",
-            "time": "09:46",
-            "date": "19 May 2025"
-        },
-        {
-            "title": "Young Mighty Warriors eye comeback against Rwanda in World Cup Qualifiers",
-            "href": "https://www.zbcnews.co.zw/young-mighty-warriors-eye-comeback-against-rwanda-in-world-cup-qualifiers/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-16.31.30.jpeg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "19 May 2025"
-        },
-        {
-            "title": "Tragic accident claims life of golfer Morton Kombai after Zim Golf Open",
-            "href": "https://www.zbcnews.co.zw/tragic-accident-claims-life-of-golfer-morton-kombai-after-zim-golf-open/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-07.23.21.jpeg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "19 May 2025"
-        },
-        {
-            "title": "Scottland slowly clicking into gear after securing 3rd consecutive victory",
-            "href": "https://www.zbcnews.co.zw/scottland-slowly-clicking-into-gear-after-securing-3rd-consecutive-victory/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-12-at-11.42.09.jpeg",
-            "category": "Sport",
-            "time": "09:46",
+            "time": "18:34",
             "date": "19 May 2025"
         }
     ]
