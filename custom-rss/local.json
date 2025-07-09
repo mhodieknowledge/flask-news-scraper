@@ -1,11 +1,35 @@
 {
     "news": [
         {
+            "title": "Seke villagers celebrate Bwoni Clinic completion",
+            "href": "https://www.zbcnews.co.zw/seke-villagers-celebrate-bwoni-clinic-completion/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-15.15.29.jpeg",
+            "category": "Local News",
+            "time": "20:43",
+            "date": "09 Jul 2025"
+        },
+        {
+            "title": "Govt liberalises maize trade as ZMX and GMAZ sign deal",
+            "href": "https://www.zbcnews.co.zw/govt-liberalises-maize-trade-as-zmx-and-gmaz-sign-deal/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-14.33.13.jpeg",
+            "category": "Local News",
+            "time": "20:43",
+            "date": "09 Jul 2025"
+        },
+        {
+            "title": "Industry and commerce endorse Zimbabwe\u2019s skills retention agenda",
+            "href": "https://www.zbcnews.co.zw/industry-and-commerce-endorse-zimbabwes-skills-retention-agenda/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/fb61e801-ac4b-4dde-b029-f45001a029ab.jpeg",
+            "category": "Local News",
+            "time": "20:43",
+            "date": "09 Jul 2025"
+        },
+        {
             "title": "ZDF reaffirms commitment to women empowerment and inclusion",
             "href": "https://www.zbcnews.co.zw/zdf-reaffirms-commitment-to-women-empowerment-and-inclusion/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-3.20.49-PM.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -13,7 +37,7 @@
             "href": "https://www.zbcnews.co.zw/liberation-heroine-cde-getrude-moyo-remembered-for-courage-and-humility/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-14.40.06.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -21,7 +45,7 @@
             "href": "https://www.zbcnews.co.zw/two-feared-dead-in-harare-mutoko-highway-crash/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/IMG-20250709-WA0000.jpg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -29,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/communities-and-farmers-urged-to-embrace-net-metering-and-green-energy/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-07-at-12.07.45-PM-1.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -37,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/devolution-funds-spur-growth-as-mvurwi-charts-path-to-municipality/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-16.17.43.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -45,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/presidential-poultry-programme-empowers-shurugwi-communities-and-schools/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-14.31.53.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -53,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/govt-condemns-shoddy-work-at-bhale-clinic-project/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-05-at-14.28.07.jpeg",
             "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         },
         {
@@ -61,31 +85,7 @@
             "href": "https://www.zbcnews.co.zw/zrp-engaged-in-devolution-programme-awareness/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-04-at-3.04.36-PM.jpeg",
             "category": "Local News",
-            "time": "18:47",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "ZEC and ZACC commit to upholding electoral integrity",
-            "href": "https://www.zbcnews.co.zw/zec-and-zacc-commit-to-upholding-electoral-integrity/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-04-at-3.03.21-PM.jpeg",
-            "category": "Local News",
-            "time": "18:47",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "Cowdray Park set for transformation through Presidential title deeds programme",
-            "href": "https://www.zbcnews.co.zw/cowdray-park-set-for-transformation-through-presidential-title-deeds-programme/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/508d5e24-1d96-46fb-bea8-c38a0e212cb0.jpg",
-            "category": "Local News",
-            "time": "18:47",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "Thornhood Primary School construction to transform education access in Gwanda",
-            "href": "https://www.zbcnews.co.zw/thornhood-primary-school-construction-to-transform-education-access-in-gwanda/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-04-at-14.12.45.jpeg",
-            "category": "Local News",
-            "time": "18:47",
+            "time": "20:43",
             "date": "09 Jul 2025"
         }
     ]
