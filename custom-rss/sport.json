@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Special Olympics featured at Regional Youth Games",
+            "href": "https://www.zbcnews.co.zw/special-olympics-featured-at-regional-youth-games/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-1.28.49-PM-1.jpeg",
+            "category": "Sport",
+            "time": "18:07",
+            "date": "09 Jul 2025"
+        },
+        {
+            "title": "Govt rewards medal-winning athletes in Namibia",
+            "href": "https://www.zbcnews.co.zw/govt-rewards-medal-winning-athletes-in-namibia/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/d95b3656-b109-43bf-87a9-e3b72f20aa0d.jpg",
+            "category": "Sport",
+            "time": "18:07",
+            "date": "09 Jul 2025"
+        },
+        {
             "title": "BBA embraces FIBA\u2019s \u2018Girl-Child Drive\u2019 in new term vision",
             "href": "https://www.zbcnews.co.zw/bba-embraces-fibas-girl-child-drive-in-new-term-vision/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-08-at-5.10.56-PM.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/sables-storm-into-semis-after-commanding-win-over-morocco/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-08-at-11.17.04-AM.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -21,23 +37,7 @@
             "href": "https://www.zbcnews.co.zw/psl-embraces-e-ticketing-as-part-of-modernisation-drive/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/psl_psl_psl_psl.jpg",
             "category": "Sport",
-            "time": "09:49",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "Minister Sanyatwe appoints new SRC Board to steer strategic transformation in sport",
-            "href": "https://www.zbcnews.co.zw/minister-sanyatwe-appoints-new-src-board-to-steer-strategic-transformation-in-sport/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/images.png",
-            "category": "Sport",
-            "time": "09:49",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "Chevrons collapse, follow on after Mulder triple century",
-            "href": "https://www.zbcnews.co.zw/chevrons-collapse-follow-on-after-mulder-triple-century/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/IMG-20250707-WA01661.jpg",
-            "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -45,7 +45,15 @@
             "href": "https://www.zbcnews.co.zw/popular-local-drama-chipo-the-gift-returns-for-fourth-season-on-zbc-tv/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-30-at-11.19.38.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
+            "date": "09 Jul 2025"
+        },
+        {
+            "title": "Minister Sanyatwe appoints new SRC Board to steer strategic transformation in sport",
+            "href": "https://www.zbcnews.co.zw/minister-sanyatwe-appoints-new-src-board-to-steer-strategic-transformation-in-sport/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/images.png",
+            "category": "Sport",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -53,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/mwos-open-up-a-three-point-lead-as-simba-bhora-stumbles/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-07-at-12.33.30-PM.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -61,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/dr-chidakwa-and-nedbank-honored-for-driving-inclusive-sport-growth/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/fa1463be-d522-4048-979e-ffce0c6e8a48.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -69,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/scottland-falls-as-caps-united-clinchs-derby-victory/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-7.00.36-PM.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         },
         {
@@ -77,15 +85,7 @@
             "href": "https://www.zbcnews.co.zw/agama-fc-strengthens-promotion-hopes-with-crucial-victory/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-4.46.06-PM-1.jpeg",
             "category": "Sport",
-            "time": "09:49",
-            "date": "09 Jul 2025"
-        },
-        {
-            "title": "Sables eye 2027 World Cup qualification glory",
-            "href": "https://www.zbcnews.co.zw/sables-eye-2027-world-cup-qualification-glory/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-05-at-20.40.52_6c32151a.jpg",
-            "category": "Sport",
-            "time": "09:49",
+            "time": "18:07",
             "date": "09 Jul 2025"
         }
     ]
