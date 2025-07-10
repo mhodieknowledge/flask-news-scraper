@@ -1,11 +1,43 @@
 {
     "news": [
         {
+            "title": "Blanket Mine hands over solar plant to CrossBoundary Energy",
+            "href": "https://www.zbcnews.co.zw/blanket-mine-hands-over-solar-plant-to-crossboundary-energy/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-10-at-15.58.16.jpeg",
+            "category": "Local News",
+            "time": "18:10",
+            "date": "10 Jul 2025"
+        },
+        {
+            "title": "Colonel (Rtd) Makova remembered for patriotic service",
+            "href": "https://www.zbcnews.co.zw/colonel-rtd-makova-remembered-for-patriotic-service/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-10-at-1.09.35-PM.jpeg",
+            "category": "Local News",
+            "time": "18:10",
+            "date": "10 Jul 2025"
+        },
+        {
+            "title": "Government steps up revival of Community Share Ownership Trusts",
+            "href": "https://www.zbcnews.co.zw/government-steps-up-revival-of-community-share-ownership-trusts/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-10-at-1.01.51-PM.jpeg",
+            "category": "Local News",
+            "time": "18:10",
+            "date": "10 Jul 2025"
+        },
+        {
+            "title": "Elevated kraals and solar lights reduce livestock losses in Nyaminyami",
+            "href": "https://www.zbcnews.co.zw/elevated-kraals-and-solar-lights-reduce-livestock-losses-in-nyaminyami/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-15.54.05.jpeg",
+            "category": "Local News",
+            "time": "18:10",
+            "date": "10 Jul 2025"
+        },
+        {
             "title": "National Multi-Faith Economic Dialogue ends with calls for Church inclusion in development",
             "href": "https://www.zbcnews.co.zw/national-multi-faith-economic-dialogue-ends-with-calls-for-church-inclusion-in-development/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-16.03.01.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -13,7 +45,7 @@
             "href": "https://www.zbcnews.co.zw/seke-villagers-celebrate-bwoni-clinic-completion/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-15.15.29.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -21,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/govt-liberalises-maize-trade-as-zmx-and-gmaz-sign-deal/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-14.33.13.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -29,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/industry-and-commerce-endorse-zimbabwes-skills-retention-agenda/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/fb61e801-ac4b-4dde-b029-f45001a029ab.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -37,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/zdf-reaffirms-commitment-to-women-empowerment-and-inclusion/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-3.20.49-PM.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -45,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/liberation-heroine-cde-getrude-moyo-remembered-for-courage-and-humility/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-09-at-14.40.06.jpeg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -53,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/two-feared-dead-in-harare-mutoko-highway-crash/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/IMG-20250709-WA0000.jpg",
             "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         },
         {
@@ -61,31 +93,7 @@
             "href": "https://www.zbcnews.co.zw/communities-and-farmers-urged-to-embrace-net-metering-and-green-energy/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-07-at-12.07.45-PM-1.jpeg",
             "category": "Local News",
-            "time": "09:48",
-            "date": "10 Jul 2025"
-        },
-        {
-            "title": "Devolution funds spur growth as Mvurwi charts path to municipality",
-            "href": "https://www.zbcnews.co.zw/devolution-funds-spur-growth-as-mvurwi-charts-path-to-municipality/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-16.17.43.jpeg",
-            "category": "Local News",
-            "time": "09:48",
-            "date": "10 Jul 2025"
-        },
-        {
-            "title": "Presidential Poultry Programme Empowers Shurugwi Communities and Schools",
-            "href": "https://www.zbcnews.co.zw/presidential-poultry-programme-empowers-shurugwi-communities-and-schools/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-06-at-14.31.53.jpeg",
-            "category": "Local News",
-            "time": "09:48",
-            "date": "10 Jul 2025"
-        },
-        {
-            "title": "Govt condemns shoddy work at Bhale Clinic project",
-            "href": "https://www.zbcnews.co.zw/govt-condemns-shoddy-work-at-bhale-clinic-project/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-05-at-14.28.07.jpeg",
-            "category": "Local News",
-            "time": "09:48",
+            "time": "18:10",
             "date": "10 Jul 2025"
         }
     ]
