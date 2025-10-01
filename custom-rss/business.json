@@ -1,11 +1,19 @@
 {
     "news": [
         {
+            "title": "Diaspora remittances hit US$1.5 billion in eight months, boosting Zim\u2019s economy",
+            "href": "https://www.zbcnews.co.zw/diaspora-remittances-hit-us1-5-billion-in-eight-months-boosting-zims-economy/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/businnes-324x400.jpg",
+            "category": "Business",
+            "time": "18:00",
+            "date": "01 Oct 2025"
+        },
+        {
             "title": "Zimbabwe calls for global energy and ICT investment at UNGA 2025",
             "href": "https://www.zbcnews.co.zw/zimbabwe-calls-for-global-energy-and-ict-investment-at-unga-2025/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-29-at-9.00.00-PM-324x400.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -13,7 +21,7 @@
             "href": "https://www.zbcnews.co.zw/govt-ramps-up-road-upgrades-under-emergency-road-rehabilitation-programme/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-29-at-8.46.06-PM-324x400.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -21,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/zim-seeks-to-further-strengthen-bilateral-ties-with-japan/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-29-at-7.08.48-PM-324x400.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -29,15 +37,15 @@
             "href": "https://www.zbcnews.co.zw/zim-targets-us15-billion-in-forex-earnings-amid-rising-gold-prices-and-export-reforms/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-29-at-7.13.12-PM-324x400.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
             "title": "Secretarial professionals hailed as backbone of organisational efficiency",
             "href": "https://www.zbcnews.co.zw/secretarial-professionals-hailed-as-backbone-of-organisational-efficiency/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-26-at-2.59.40-PM-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-26-at-2.59.40-PM-696x522.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -45,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/zimbabwe-tipped-to-gain-from-record-breaking-gold-prices/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-26-at-2.34.45-PM-696x394.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -53,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/treasury-takes-tax-sensitisation-programme-to-chiredzi/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/f985ee5f-e28c-41a9-abfd-6ff529e0c2be-696x464.jpg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -61,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/govt-pledges-stronger-support-for-zimbabwes-construction-industry/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-3.58.33-PM-696x464.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -69,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/masvingo-province-drives-devolution-through-mining-and-energy-investments/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-17.08.30-696x522.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -77,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/uk-based-kavango-resources-official-listing-set-for-friday/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-14.55.37-696x392.jpeg",
             "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         },
         {
@@ -85,15 +93,7 @@
             "href": "https://www.zbcnews.co.zw/zim-renews-call-for-inclusive-global-financial-system-at-un-economic-summit/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-1.37.05-PM-696x464.jpeg",
             "category": "Business",
-            "time": "09:46",
-            "date": "01 Oct 2025"
-        },
-        {
-            "title": "Harare Metropolitan Province promotes ease of doing business reforms",
-            "href": "https://www.zbcnews.co.zw/harare-metropolitan-province-promotes-ease-of-doing-business-reforms/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-1.21.07-PM-696x522.jpeg",
-            "category": "Business",
-            "time": "09:46",
+            "time": "18:00",
             "date": "01 Oct 2025"
         }
     ]
