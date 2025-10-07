@@ -1,43 +1,75 @@
 {
     "news": [
         {
+            "title": "Mbalabala community gets relief through piped water scheme",
+            "href": "https://www.zbcnews.co.zw/mbalabala-community-gets-relief-through-piped-water-scheme/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251007-WA0040-324x400.jpg",
+            "category": "Local News",
+            "time": "18:09",
+            "date": "07 Oct 2025"
+        },
+        {
+            "title": "Patient nabbed for copper heist at Sally Mugabe Hospital",
+            "href": "https://www.zbcnews.co.zw/patient-nabbed-for-copper-heist-at-sally-mugabe-hospital/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251007-WA0026-324x400.jpg",
+            "category": "Local News",
+            "time": "18:09",
+            "date": "07 Oct 2025"
+        },
+        {
+            "title": "Nyamakate community sets rural industrialisation benchmark",
+            "href": "https://www.zbcnews.co.zw/nyamakate-community-sets-rural-industrialisation-benchmark/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-07-at-2.23.01-PM-324x400.jpeg",
+            "category": "Local News",
+            "time": "18:09",
+            "date": "07 Oct 2025"
+        },
+        {
+            "title": "Kuwadzana toddlers set to be buried as investigations continue",
+            "href": "https://www.zbcnews.co.zw/kuwadzana-toddlers-set-to-be-buried-as-investigations-continue/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-07-at-11.17.39-AM-324x400.jpeg",
+            "category": "Local News",
+            "time": "18:09",
+            "date": "07 Oct 2025"
+        },
+        {
             "title": "Stapleford mourns as Caroline Chari (13), mauled by dogs is laid to rest",
             "href": "https://www.zbcnews.co.zw/stapleford-mourns-as-caroline-chari-13-mauled-by-dogs-is-laid-to-rest/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-04-at-21.00.17-324x400.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
             "title": "ZDF, traditional leaders strengthen ties to advance rural development",
             "href": "https://www.zbcnews.co.zw/zdf-traditional-leaders-strengthen-ties-to-advance-rural-development/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-04-at-13.31.35-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-04-at-13.31.35-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
             "title": "Youth empowerment drive promotes skills development and fights drug abuse",
             "href": "https://www.zbcnews.co.zw/youth-empowerment-drive-promotes-skills-development-and-fights-drug-abuse/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-7.10.17-PM-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-7.10.17-PM-696x392.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
             "title": "NUST to hold 31st graduation ceremony as STEM graduates take centre stage",
             "href": "https://www.zbcnews.co.zw/nust-to-hold-31st-graduation-ceremony-as-stem-graduates-take-centre-stage/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-10.22.57-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-10.22.57-696x464.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
             "title": "Govt reaffirms commitment to promoting access to information",
             "href": "https://www.zbcnews.co.zw/govt-reaffirms-commitment-to-promoting-access-to-information/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/8fb21afb-2714-4454-b920-8d8e8e8d97bb-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/8fb21afb-2714-4454-b920-8d8e8e8d97bb-696x392.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
@@ -45,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/hwange-sees-housing-boom-driven-by-public-private-partnerships/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-01-at-09.37.15-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
@@ -53,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/government-disburses-funds-to-address-chitungwiza-sewer-challenges/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-30-at-6.40.13-PM-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         },
         {
@@ -61,39 +93,7 @@
             "href": "https://www.zbcnews.co.zw/govts-business-units-initiative-brings-clean-water-relief-to-gwerus-mkoba-suburb/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-30-at-12.19.33-696x436.jpeg",
             "category": "Local News",
-            "time": "09:46",
-            "date": "07 Oct 2025"
-        },
-        {
-            "title": "Govt rallies UCE graduates to launch consortium schools",
-            "href": "https://www.zbcnews.co.zw/govt-rallies-uce-graduates-to-launch-consortium-schools/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-26-at-15.50.55-696x392.jpeg",
-            "category": "Local News",
-            "time": "09:46",
-            "date": "07 Oct 2025"
-        },
-        {
-            "title": "Chikomba community enjoys electricity connectivity",
-            "href": "https://www.zbcnews.co.zw/chikomba-community-enjoys-electricity-connectivity/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-26-at-11.19.10-AM-696x522.jpeg",
-            "category": "Local News",
-            "time": "09:46",
-            "date": "07 Oct 2025"
-        },
-        {
-            "title": "ZESA scales up transformer production to power Vision 2030",
-            "href": "https://www.zbcnews.co.zw/zesa-scales-up-transformer-production-to-power-vision-2030/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-18.17.10-696x522.jpeg",
-            "category": "Local News",
-            "time": "09:46",
-            "date": "07 Oct 2025"
-        },
-        {
-            "title": "Harare Metropolitan rides on development wave to boost provincial economy",
-            "href": "https://www.zbcnews.co.zw/harare-metropolitan-rides-on-development-wave-to-boost-provincial-economy/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-23-at-13.52.53-696x522.jpeg",
-            "category": "Local News",
-            "time": "09:46",
+            "time": "18:09",
             "date": "07 Oct 2025"
         }
     ]
