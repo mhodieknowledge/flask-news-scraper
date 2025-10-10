@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Rural electrification drive lights up Bubi District",
+            "href": "https://www.zbcnews.co.zw/rural-electrification-drive-lights-up-bubi-district/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-10-at-12.20.08-324x400.jpeg",
+            "category": "Local News",
+            "time": "18:01",
+            "date": "10 Oct 2025"
+        },
+        {
+            "title": "Major milestone as Harare-Beitbridge Road nears completion",
+            "href": "https://www.zbcnews.co.zw/major-milestone-as-harare-beitbridge-road-nears-completion/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-10-at-09.56.55-324x400.jpeg",
+            "category": "Local News",
+            "time": "18:01",
+            "date": "10 Oct 2025"
+        },
+        {
             "title": "Zim showcases cooperative innovation at 14th AMCCO in Nairobi",
             "href": "https://www.zbcnews.co.zw/zim-showcases-cooperative-innovation-at-14th-amcco-in-nairobi/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-09-at-18.39.24-324x400.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/masvingo-trumpet-interchange-project-set-to-transform-citys-traffic-flow/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251009-WA0261-324x400.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -21,23 +37,23 @@
             "href": "https://www.zbcnews.co.zw/mbalabala-community-gets-relief-through-piped-water-scheme/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251007-WA0040-324x400.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
             "title": "Patient nabbed for copper heist at Sally Mugabe Hospital",
             "href": "https://www.zbcnews.co.zw/patient-nabbed-for-copper-heist-at-sally-mugabe-hospital/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251007-WA0026-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251007-WA0026-696x463.jpg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
             "title": "Nyamakate community sets rural industrialisation benchmark",
             "href": "https://www.zbcnews.co.zw/nyamakate-community-sets-rural-industrialisation-benchmark/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-07-at-2.23.01-PM-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-07-at-2.23.01-PM-696x392.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -45,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/kuwadzana-toddlers-set-to-be-buried-as-investigations-continue/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-07-at-11.17.39-AM-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -53,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/stapleford-mourns-as-caroline-chari-13-mauled-by-dogs-is-laid-to-rest/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-04-at-21.00.17-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -61,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/zdf-traditional-leaders-strengthen-ties-to-advance-rural-development/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-04-at-13.31.35-696x522.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -69,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/youth-empowerment-drive-promotes-skills-development-and-fights-drug-abuse/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-7.10.17-PM-696x392.jpeg",
             "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         },
         {
@@ -77,23 +93,7 @@
             "href": "https://www.zbcnews.co.zw/nust-to-hold-31st-graduation-ceremony-as-stem-graduates-take-centre-stage/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-03-at-10.22.57-696x464.jpeg",
             "category": "Local News",
-            "time": "09:46",
-            "date": "10 Oct 2025"
-        },
-        {
-            "title": "Govt reaffirms commitment to promoting access to information",
-            "href": "https://www.zbcnews.co.zw/govt-reaffirms-commitment-to-promoting-access-to-information/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/8fb21afb-2714-4454-b920-8d8e8e8d97bb-696x392.jpg",
-            "category": "Local News",
-            "time": "09:46",
-            "date": "10 Oct 2025"
-        },
-        {
-            "title": "Hwange sees housing boom driven by public-private partnerships",
-            "href": "https://www.zbcnews.co.zw/hwange-sees-housing-boom-driven-by-public-private-partnerships/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-01-at-09.37.15-696x522.jpeg",
-            "category": "Local News",
-            "time": "09:46",
+            "time": "18:01",
             "date": "10 Oct 2025"
         }
     ]
