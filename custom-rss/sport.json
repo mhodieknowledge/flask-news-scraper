@@ -1,11 +1,35 @@
 {
     "news": [
         {
+            "title": "Victoria Falls to host Africa Footgolf Championship as World Cup qualifiers begin",
+            "href": "https://www.zbcnews.co.zw/victoria-falls-to-host-africa-footgolf-championship-as-world-cup-qualifiers-begin/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-15-at-3.50.03-PM-1-324x400.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
+            "title": "Highlanders Royals relegated after one\u2011nil loss to Mpopoma Club",
+            "href": "https://www.zbcnews.co.zw/highlanders-royals-relegated-after-one%e2%80%91nil-loss-to-mpopoma-club/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-15-at-3.05.38-PM-324x400.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
+            "title": "Chicken Inn look to rebuild after turbulent 2025 Premiership campaign",
+            "href": "https://www.zbcnews.co.zw/chicken-inn-look-to-rebuild-after-turbulent-2025-premiership-campaign/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-15-at-9.39.46-AM-324x400.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
             "title": "Warriors mark one year without international victory after friendly loss to Algeria",
             "href": "https://www.zbcnews.co.zw/warriors-mark-one-year-without-international-victory-after-friendly-loss-to-algeria/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/8164045f-711f-4145-8280-abd5fccfa12e-324x400.jpg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
             "date": "15 Nov 2025"
         },
         {
@@ -13,31 +37,7 @@
             "href": "https://www.zbcnews.co.zw/chirewa-rejoins-wolves-as-zifa-grants-clearance/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/dbda8aa5-526f-4fbf-8c27-080beec1092f-324x400.jpg",
             "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "Zimbabwe suffer 3-1 defeat to Algeria as Marinica\u2019s tenure begins on a difficult note",
-            "href": "https://www.zbcnews.co.zw/zimbabwe-suffer-3-1-defeat-to-algeria-as-marinicas-tenure-begins-on-a-difficult-note/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/Algeria-vs-Zimbabwe-Warriors-324x400.jpg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "Herentals forward, Praynance Zvawanda eyes Women\u2019s Premier League top scorer title",
-            "href": "https://www.zbcnews.co.zw/herentals-forward-praynance-zvawanda-eyes-womens-premier-league-top-scorer-title/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-12-at-17.35.40-324x400.jpeg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "New era dawns for PSL as Rodwell Thabe takes helm",
-            "href": "https://www.zbcnews.co.zw/new-era-dawns-for-psl-as-rodwell-thabe-takes-helm/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-12-at-17.03.12-324x400.jpeg",
-            "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
             "date": "15 Nov 2025"
         },
         {
@@ -45,7 +45,31 @@
             "href": "https://www.zbcnews.co.zw/seven-coaches-in-seven-years-time-for-zifa-to-break-the-cycle/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/10/IMG-20251027-WA0073-324x400.jpg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
+            "title": "Zimbabwe suffer 3-1 defeat to Algeria as Marinica\u2019s tenure begins on a difficult note",
+            "href": "https://www.zbcnews.co.zw/zimbabwe-suffer-3-1-defeat-to-algeria-as-marinicas-tenure-begins-on-a-difficult-note/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/Algeria-vs-Zimbabwe-Warriors-696x402.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
+            "title": "Herentals forward, Praynance Zvawanda eyes Women\u2019s Premier League top scorer title",
+            "href": "https://www.zbcnews.co.zw/herentals-forward-praynance-zvawanda-eyes-womens-premier-league-top-scorer-title/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-12-at-17.35.40-696x941.jpeg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "15 Nov 2025"
+        },
+        {
+            "title": "New era dawns for PSL as Rodwell Thabe takes helm",
+            "href": "https://www.zbcnews.co.zw/new-era-dawns-for-psl-as-rodwell-thabe-takes-helm/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-12-at-17.03.12-696x958.jpeg",
+            "category": "Sport",
+            "time": "18:01",
             "date": "15 Nov 2025"
         },
         {
@@ -53,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/rinomhota-rejoins-reading-until-end-of-season/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/IMG-20251112-WA0048-696x392.jpg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
             "date": "15 Nov 2025"
         },
         {
@@ -61,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/football-stakeholders-split-over-zifas-proposed-league-restructuring/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-12-at-14.53.41-696x522.jpg",
             "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
             "date": "15 Nov 2025"
         },
         {
@@ -69,31 +93,7 @@
             "href": "https://www.zbcnews.co.zw/psl-clubs-to-vote-on-league-expansion-at-november-19-egm/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/footer-logo-1.png",
             "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "\u2018Give your all\u2019 \u2013 Marinica rallies Warriors squad in final push for AFCON glory",
-            "href": "https://www.zbcnews.co.zw/give-your-all-marinica-rallies-warriors-squad-in-final-push-for-afcon-glory/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-11-at-10.48.13-AM-696x622.jpeg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "Unbeaten Agama storm into Premier Soccer League after 24-match run",
-            "href": "https://www.zbcnews.co.zw/unbeaten-agama-storm-into-premier-soccer-league-after-24-match-run/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/IMG-20251109-WA0087-696x795.jpg",
-            "category": "Sport",
-            "time": "09:46",
-            "date": "15 Nov 2025"
-        },
-        {
-            "title": "Zims first certified ninja carves-global legacy through self-taught mastery",
-            "href": "https://www.zbcnews.co.zw/zims-first-certified-ninja-carves-global-legacy-through-self-taught-mastery/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/IMG-20251109-WA0072.jpg",
-            "category": "Sport",
-            "time": "09:46",
+            "time": "18:01",
             "date": "15 Nov 2025"
         }
     ]
