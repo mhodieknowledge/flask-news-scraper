@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Education 5.0 drives job creation as VTC graduates launch enterprises in Midlands",
+            "href": "https://www.zbcnews.co.zw/education-5-0-drives-job-creation-as-vtc-graduates-launch-enterprises-in-midlands/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-27-at-17.58.07-324x400.jpeg",
+            "category": "Local News",
+            "time": "20:40",
+            "date": "27 Nov 2025"
+        },
+        {
+            "title": "Kadoma residents with disabilities benefit from inclusive housing initiative",
+            "href": "https://www.zbcnews.co.zw/kadoma-residents-with-disabilities-benefit-from-inclusive-housing-initiative/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-27-at-18.30.49-324x400.jpg",
+            "category": "Local News",
+            "time": "20:40",
+            "date": "27 Nov 2025"
+        },
+        {
             "title": "Public-private partnerships enhance learning as Zvishavane schools receive 6 000 books",
             "href": "https://www.zbcnews.co.zw/public-private-partnerships-enhance-learning-as-zvishavane-schools-receive-6-000-books/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-26-at-17.42.29-324x400.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/chiredzi-motorists-welcome-progress-on-inyathi-road-rehabilitation/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-26-at-15.01.52-324x400.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -21,23 +37,23 @@
             "href": "https://www.zbcnews.co.zw/harare-water-supply-and-distribution-upgrade-gains-momentum/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-25-at-17.20.52-324x400.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
             "title": "Harare City Council set for major skills assessment under new MoU",
             "href": "https://www.zbcnews.co.zw/harare-city-council-set-for-major-skills-assessment-under-new-mou/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-25-at-15.27.23-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-25-at-15.27.23-696x522.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
             "title": "New Merchant Shipping Act set to strengthen Zimbabwe\u2019s maritime integration",
             "href": "https://www.zbcnews.co.zw/new-merchant-shipping-act-set-to-strengthen-zimbabwes-maritime-integration/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-25-at-05.32.57-324x400.jpeg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-25-at-05.32.57-696x522.jpeg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -45,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/midlands-chiefs-laud-govt-for-driving-development/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/IMG-20251124-WA0073-696x522.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -53,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/zim-launches-16-days-to-end-gbv-with-focus-on-digital-safety/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-23-at-8.43.48-AM-696x522.jpeg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -61,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/govt-reaffirms-commitment-to-welfare-of-liberation-war-veterans/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-22-at-4.02.36-PM-696x392.jpg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -69,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/mat-north-party-leadership-underscores-infrastructure-as-key-to-development-agenda/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-22-at-2.20.45-PM-3-696x522.jpeg",
             "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         },
         {
@@ -77,23 +93,7 @@
             "href": "https://www.zbcnews.co.zw/african-apostolic-church-leader-paul-mwazha-conferred-national-hero-status/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-22-at-12.13.26-PM-696x928.jpeg",
             "category": "Local News",
-            "time": "18:44",
-            "date": "27 Nov 2025"
-        },
-        {
-            "title": "ZDF strengthens regional cooperation through advanced training programmes",
-            "href": "https://www.zbcnews.co.zw/zdf-strengthens-regional-cooperation-through-advanced-training-programmes/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-21-at-17.58.52-696x386.jpeg",
-            "category": "Local News",
-            "time": "18:44",
-            "date": "27 Nov 2025"
-        },
-        {
-            "title": "Matabeleland South youth gain practical skills at Phangani Vocational Training Centre",
-            "href": "https://www.zbcnews.co.zw/matabeleland-south-youth-gain-practical-skills-at-phangani-vocational-training-centre/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/11/IMG-20251120-WA0195-696x392.jpg",
-            "category": "Local News",
-            "time": "18:44",
+            "time": "20:40",
             "date": "27 Nov 2025"
         }
     ]
