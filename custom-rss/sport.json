@@ -1,11 +1,27 @@
 {
     "news": [
         {
+            "title": "Zimbabwe swimmers advance to finals at African Youth Games",
+            "href": "https://www.zbcnews.co.zw/zimbabwe-swimmers-advance-to-finals-at-african-youth-games/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-12-at-13.06.29-324x400.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "12 Dec 2025"
+        },
+        {
+            "title": "Team Zimbabwe sparkles with gold at AUSC Region 5 Youth Games",
+            "href": "https://www.zbcnews.co.zw/team-zimbabwe-sparkles-with-gold-at-ausc-region-5-youth-games/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-12-at-09.25.54-324x400.jpg",
+            "category": "Sport",
+            "time": "18:01",
+            "date": "12 Dec 2025"
+        },
+        {
             "title": "Zim analyst Mukandatsama drafted into Bafana Bafana\u2019s technical team for AFCON",
             "href": "https://www.zbcnews.co.zw/zim-analyst-mukandatsama-drafted-into-bafana-bafanas-technical-team-for-afcon/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-11-at-12.40.41-324x400.jpeg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -13,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/munetsi-and-zemura-injuries-unsettle-zimbabwes-afcon-preparations/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251210-WA00991-324x400.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -21,23 +37,23 @@
             "href": "https://www.zbcnews.co.zw/51021-2/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0024-324x400.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
             "title": "Maswanhise named Scottish Premiership Player of the Month",
             "href": "https://www.zbcnews.co.zw/maswanhise-named-scottish-premiership-player-of-the-month/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0084-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0084-696x441.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
             "title": "Budding Zimbabwean tennis players impress at Bulawayo ITF Tournament",
             "href": "https://www.zbcnews.co.zw/budding-zimbabwean-tennis-players-impress-at-bulawayo-itf-tournament/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0081-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0081-696x522.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -45,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/mpopoma-blast-namibias-otjiwarongo-12-0/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251208-WA0063-696x796.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -53,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/youths-urged-to-adopt-healthy-lifestyles-and-shun-drugs/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251208-WA0056-696x320.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -61,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/gems-shine-in-lilongwe-defeat-namibia-48-36-in-tournament-opener/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/0e231507-765c-447a-8455-ee34908747b2.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -69,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/lesley-gondo-claims-npc-pro-world-cup-qualifier-title-in-south-africa/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/d84ed619-a4f6-4947-808a-ecfd3f812864-696x522.jpg",
             "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         },
         {
@@ -77,23 +93,7 @@
             "href": "https://www.zbcnews.co.zw/nyandoro-calls-on-warriors-to-gear-up-for-intense-afcon-battle-in-morocco/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/62d27c4c-b53c-4487-ad9a-afa62f2f1d00-696x828.jpg",
             "category": "Sport",
-            "time": "09:49",
-            "date": "12 Dec 2025"
-        },
-        {
-            "title": "Warriors resume AFCON preparations",
-            "href": "https://www.zbcnews.co.zw/warriors-resume-afcon-preparations/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/c682f810-37cf-4f54-9003-7b54518bbeda-696x577.jpg",
-            "category": "Sport",
-            "time": "09:49",
-            "date": "12 Dec 2025"
-        },
-        {
-            "title": "PSL coach of the year, Ndiraya confident of securing new post",
-            "href": "https://www.zbcnews.co.zw/psl-coach-of-the-year-ndiraya-confident-of-securing-new-post/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-07-at-12.34.48-696x539.jpeg",
-            "category": "Sport",
-            "time": "09:49",
+            "time": "18:01",
             "date": "12 Dec 2025"
         }
     ]
