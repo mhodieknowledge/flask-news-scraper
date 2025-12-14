@@ -1,11 +1,19 @@
 {
     "news": [
         {
+            "title": "Hwange Academy Wins Marvellous Nakamba Under-17 Tournament",
+            "href": "https://www.zbcnews.co.zw/hwange-academy-wins-marvellous-nakamba-under-17-tournament/",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/8d26dabc-ecb9-4a54-ac6b-35ff98c2360d-324x400.jpg",
+            "category": "Sport",
+            "time": "20:41",
+            "date": "14 Dec 2025"
+        },
+        {
             "title": "Kelvin Kaindu takes over at Hardrock as Dynamos weigh next steps",
             "href": "https://www.zbcnews.co.zw/kelvin-kaindu-takes-over-at-hardrock-as-dynamos-weigh-next-steps/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-14-at-06.59.20-324x400.jpeg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -13,7 +21,7 @@
             "href": "https://www.zbcnews.co.zw/zimbabwe-youth-athletes-shine-as-medal-tally-reaches-10-in-angola/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-13-at-4.59.31-PM-324x400.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -21,7 +29,7 @@
             "href": "https://www.zbcnews.co.zw/munhumutapa-youth-games-boost-youth-participation-and-unity-in-mashonaland-west/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/6b8559b4-ab39-4b6e-841c-dbc0c6fc9d62-2-324x400.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -29,15 +37,15 @@
             "href": "https://www.zbcnews.co.zw/womens-baseball-gains-momentum-as-zimbabwe-hosts-regional-championship/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-13-at-1.50.43-PM-1-324x400.jpeg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
             "title": "Moffat joins champions Scottland after MWOS exit",
             "href": "https://www.zbcnews.co.zw/moffat-joins-champions-scottland-after-mwos-exit/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251212-WA0036-324x400.jpg",
+            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251212-WA0036-696x1050.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -45,7 +53,7 @@
             "href": "https://www.zbcnews.co.zw/zimbabwe-swimmers-advance-to-finals-at-african-youth-games/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-12-at-13.06.29-696x522.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -53,7 +61,7 @@
             "href": "https://www.zbcnews.co.zw/team-zimbabwe-sparkles-with-gold-at-ausc-region-5-youth-games/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-12-at-09.25.54-696x392.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -61,7 +69,7 @@
             "href": "https://www.zbcnews.co.zw/zim-analyst-mukandatsama-drafted-into-bafana-bafanas-technical-team-for-afcon/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-11-at-12.40.41-696x928.jpeg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -69,7 +77,7 @@
             "href": "https://www.zbcnews.co.zw/munetsi-and-zemura-injuries-unsettle-zimbabwes-afcon-preparations/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251210-WA00991-696x385.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -77,7 +85,7 @@
             "href": "https://www.zbcnews.co.zw/51021-2/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0024-696x832.jpg",
             "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         },
         {
@@ -85,15 +93,7 @@
             "href": "https://www.zbcnews.co.zw/maswanhise-named-scottish-premiership-player-of-the-month/",
             "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0084-696x441.jpg",
             "category": "Sport",
-            "time": "18:43",
-            "date": "14 Dec 2025"
-        },
-        {
-            "title": "Budding Zimbabwean tennis players impress at Bulawayo ITF Tournament",
-            "href": "https://www.zbcnews.co.zw/budding-zimbabwean-tennis-players-impress-at-bulawayo-itf-tournament/",
-            "img_url": "https://www.zbcnews.co.zw/wp-content/uploads/2025/12/IMG-20251209-WA0081-696x522.jpg",
-            "category": "Sport",
-            "time": "18:43",
+            "time": "20:41",
             "date": "14 Dec 2025"
         }
     ]
