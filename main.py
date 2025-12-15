@@ -24,10 +24,13 @@ user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/120.0.0.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
 ]
 
 # GitHub configuration
-github_token = github_token = os.getenv('GITHUB_TOKEN')
+github_token = os.getenv('GITHUB_TOKEN')
 repo_owner = "mhodieknowledge"
 repo_name = "flask-news-scraper"
 branch = "main"
@@ -116,8 +119,17 @@ json_files = {
 # Create a requests session for better performance and cookie handling
 session = requests.Session()
 
+def rotate_session_params():
+    """Rotate session parameters to avoid detection"""
+    session.headers.update({
+        "User-Agent": random.choice(user_agents),
+        "Accept-Language": random.choice(["en-US,en;q=0.9", "en-GB,en;q=0.8", "en;q=0.7"])
+    })
+
 def get_enhanced_headers(additional_headers=None):
     """Get enhanced headers with anti-detection measures"""
+    rotate_session_params()  # Rotate parameters each time
+    
     base_headers = {
         "User-Agent": random.choice(user_agents),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -466,6 +478,185 @@ def save_to_github(json_file, data):
         print(f"Failed to update {json_file} on GitHub: {response.status_code}, {response.text}")
         return False
 
+def scrape_custom_content(url):
+    """Scrape content from ZBC news articles with enhanced anti-blocking measures"""
+    max_retries = 3
+    retry_delay = 2
+    
+    for attempt in range(max_retries):
+        try:
+            # Add random delay
+            time.sleep(random.uniform(2, 4))
+            
+            # Enhanced headers specifically for ZBC
+            headers = get_enhanced_headers({
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Referer": "https://www.zbcnews.co.zw/",
+                "Sec-Fetch-Dest": "document",
+                "Sec-Fetch-Mode": "navigate",
+                "Sec-Fetch-Site": "same-origin",
+                "Sec-Fetch-User": "?1",
+                "Upgrade-Insecure-Requests": "1",
+                "Cache-Control": "max-age=0",
+            })
+            
+            # Try with session first
+            response = session.get(url, headers=headers, timeout=15)
+            
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, "html.parser")
+                
+                # Try multiple content selectors for ZBC
+                content_selectors = [
+                    "div.td-post-content",  # Primary selector for ZBC
+                    "div.td-main-content-wrap",
+                    "div.tdc-container-wrap",
+                    "article",  # Fallback
+                    "div.entry-content",
+                    "div.post-content",
+                    "main",
+                ]
+                
+                main_content = None
+                for selector in content_selectors:
+                    main_content = soup.select_one(selector)
+                    if main_content:
+                        break
+                
+                if not main_content:
+                    return "Could not find the article content."
+                
+                # Get paragraphs and filter out unwanted ones
+                paragraphs = main_content.find_all("p")
+                
+                # Filter out common unwanted paragraphs (ads, related articles, etc.)
+                filtered_paragraphs = []
+                for p in paragraphs:
+                    text = p.get_text(strip=True)
+                    # Skip empty paragraphs and common unwanted patterns
+                    if text and len(text) > 20:  # Skip very short paragraphs
+                        # Skip paragraphs containing unwanted text
+                        unwanted_keywords = [
+                            "read also",
+                            "related articles",
+                            "continue reading",
+                            "click here",
+                            "advertisement",
+                            "sponsored",
+                            "subscribe",
+                            "watch video",
+                            "video below",
+                        ]
+                        
+                        text_lower = text.lower()
+                        if not any(keyword in text_lower for keyword in unwanted_keywords):
+                            # Also skip paragraphs that are mostly links
+                            links = p.find_all("a")
+                            if len(links) / len(text.split()) < 0.3:  # Less than 30% links
+                                filtered_paragraphs.append(text)
+                
+                # Join with proper spacing
+                content = "\n\n".join(filtered_paragraphs)
+                
+                # Limit content length
+                if len(content) > 10000:
+                    content = content[:10000] + "... [Content truncated]"
+                
+                return content if content else "No content found in the article."
+            
+            elif response.status_code == 403:
+                print(f"Attempt {attempt + 1}: Got 403 Forbidden for {url}")
+                
+                if attempt < max_retries - 1:
+                    # Try different approach on retry
+                    wait_time = retry_delay * (attempt + 1) * random.uniform(1, 2)
+                    print(f"Waiting {wait_time:.2f} seconds before retry...")
+                    time.sleep(wait_time)
+                    
+                    # Try with different user agent on retry
+                    session.headers.update({"User-Agent": random.choice(user_agents)})
+                    
+                    # Try to mimic browser behavior more closely
+                    if attempt == 1:
+                        headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                        headers["Accept-Encoding"] = "gzip, deflate, br"
+                
+            else:
+                return f"Failed to fetch the page at {url}. Status code: {response.status_code}"
+                
+        except requests.exceptions.Timeout:
+            print(f"Attempt {attempt + 1}: Timeout for {url}")
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay * (attempt + 1))
+        
+        except Exception as e:
+            print(f"Attempt {attempt + 1}: Error fetching URL {url}: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay * (attempt + 1))
+    
+    return f"Failed to fetch the page at {url} after {max_retries} attempts."
+
+def scrape_custom_json(json_url, save_path):
+    try:
+        headers = get_enhanced_headers()
+        response = session.get(json_url, headers=headers, timeout=10)
+        
+        if response.status_code == 200:
+            news_data = response.json()
+            news_articles = news_data.get("news", [])[:5]  # Limit to 5 articles
+            output_data = {"news": []}
+            
+            successful_scrapes = 0
+            failed_scrapes = 0
+            
+            for i, news in enumerate(news_articles):
+                title = news.get("title", "")
+                href = news.get("href", "")
+                
+                if href:
+                    print(f"Scraping article {i+1}/{len(news_articles)}: {title[:50]}...")
+                    
+                    # Add variable delay between requests
+                    delay = random.uniform(3, 6)
+                    time.sleep(delay)
+                    
+                    content = scrape_custom_content(href)
+                    
+                    # Check if scraping was successful
+                    if "Failed to fetch" not in content and "Error" not in content:
+                        successful_scrapes += 1
+                    else:
+                        failed_scrapes += 1
+                        print(f"Warning: Could not scrape content for: {title}")
+                    
+                    output_data["news"].append({
+                        "title": title,
+                        "href": href,
+                        "content": content,
+                        "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
+                        "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
+                    })
+            
+            print(f"Scraping complete: {successful_scrapes} successful, {failed_scrapes} failed")
+            
+            # Save to GitHub
+            success = save_to_github(save_path, output_data)
+            
+            if success:
+                return {
+                    "message": f"Scraping complete for {json_url}.",
+                    "articles_scraped": len(output_data["news"]),
+                    "successful": successful_scrapes,
+                    "failed": failed_scrapes
+                }
+            else:
+                return {"error": "Failed to save data to GitHub."}
+        else:
+            return {"error": f"Failed to fetch the JSON file. Status code: {response.status_code}"}
+    except Exception as e:
+        return {"error": f"An error occurred: {str(e)}"}
+
 @app.route('/scrape/<feed_name>', methods=['GET'])
 def scrape_feed(feed_name):
     if feed_name in feeds:
@@ -484,63 +675,6 @@ def scrape_feed(feed_name):
             return jsonify({"error": f"Failed to scrape {feed_name}"}), 500
     else:
         return jsonify({"error": "Feed not found"}), 404
-
-def scrape_custom_content(url):
-    try:
-        headers = get_enhanced_headers()
-        response = session.get(url, headers=headers, timeout=15)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-            
-            main_content = soup.find("div", class_="td-main-content-wrap td-container-wrap")
-            if not main_content:
-                main_content = soup.find("div", class_="tdc-container-wrap")
-            
-            if not main_content:
-                return "Could not find the specified content div."
-            
-            paragraphs = main_content.find_all("p")
-            filtered_paragraphs = exclude_last_paragraphs(paragraphs, 3)
-            
-            return "\n".join(p.get_text(strip=True) for p in filtered_paragraphs)
-        else:
-            return f"Failed to fetch the page at {url}. Status code: {response.status_code}"
-    except Exception as e:
-        return f"Error fetching URL {url}: {e}"
-
-def exclude_last_paragraphs(paragraphs, count):
-    return paragraphs[:-count] if len(paragraphs) > count else paragraphs
-
-def scrape_custom_json(json_url, save_path):
-    try:
-        headers = get_enhanced_headers()
-        response = session.get(json_url, headers=headers, timeout=10)
-        if response.status_code == 200:
-            news_data = response.json()
-            news_articles = news_data.get("news", [])[:5]
-            output_data = {"news": []}
-            for news in news_articles:
-                title = news.get("title", "")
-                href = news.get("href", "")
-                if href:
-                    # Add delay between requests
-                    time.sleep(random.uniform(1, 3))
-                    content = scrape_custom_content(href)
-                    
-                    output_data["news"].append({
-                        "title": title,
-                        "href": href,
-                        "content": content,
-                        "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
-                        "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
-                    })
-            
-            save_to_github(save_path, output_data)
-            return {"message": f"Scraping complete for {json_url}.", "articles": len(output_data["news"])}
-        else:
-            return {"error": f"Failed to fetch the JSON file. Status code: {response.status_code}"}
-    except Exception as e:
-        return {"error": f"An error occurred: {str(e)}"}
 
 @app.route('/scrape/custom/<category>', methods=['GET'])
 def scrape_custom_category(category):
@@ -611,5 +745,7 @@ def scrape_all():
     return jsonify({"message": "Scraping all feeds completed", "results": results}), 200
 
 if __name__ == "__main__":
+    # Initialize session with random parameters
+    rotate_session_params()
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
