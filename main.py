@@ -118,18 +118,18 @@ json_files = {
 
 # Create a requests session for better performance and cookie handling
 session = requests.Session()
-
-def rotate_session_params():
-    """Rotate session parameters to avoid detection"""
-    session.headers.update({
-        "User-Agent": random.choice(user_agents),
-        "Accept-Language": random.choice(["en-US,en;q=0.9", "en-GB,en;q=0.8", "en;q=0.7"])
-    })
+# Initialize session with a default user agent
+session.headers.update({
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br",
+    "DNT": "1",
+    "Connection": "keep-alive",
+})
 
 def get_enhanced_headers(additional_headers=None):
     """Get enhanced headers with anti-detection measures"""
-    rotate_session_params()  # Rotate parameters each time
-    
     base_headers = {
         "User-Agent": random.choice(user_agents),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -214,8 +214,11 @@ def scrape_article_content(url, content_class, image_class=None, custom_image_ur
             headers = get_enhanced_headers(site_headers)
             headers["Referer"] = url.rsplit('/', 2)[0] + '/' if '/' in url else url
             
-            # Use session for better cookie handling
-            response = session.get(url, headers=headers, timeout=15)
+            # Use a new session for each request to avoid cookie tracking
+            temp_session = requests.Session()
+            temp_session.headers.update(headers)
+            
+            response = temp_session.get(url, timeout=15)
             
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "html.parser")
@@ -412,7 +415,12 @@ def scrape_category_page(url, category_name):
     category_class = category_mapping.get(category_name, category_name.capitalize())
     
     headers = get_enhanced_headers()
-    response = session.get(url, headers=headers, timeout=15)
+    
+    # Use a new session for each request
+    temp_session = requests.Session()
+    temp_session.headers.update(headers)
+    
+    response = temp_session.get(url, timeout=15)
     
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, "html.parser")
@@ -479,7 +487,7 @@ def save_to_github(json_file, data):
         return False
 
 def scrape_custom_content(url):
-    """Scrape content from ZBC news articles with enhanced anti-blocking measures"""
+    """Scrape content from ZBC news articles with anti-blocking measures"""
     max_retries = 3
     retry_delay = 2
     
@@ -488,31 +496,32 @@ def scrape_custom_content(url):
             # Add random delay
             time.sleep(random.uniform(2, 4))
             
-            # Enhanced headers specifically for ZBC
-            headers = get_enhanced_headers({
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            # Use simpler headers
+            headers = {
+                "User-Agent": random.choice(user_agents),
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.5",
-                "Referer": "https://www.zbcnews.co.zw/",
-                "Sec-Fetch-Dest": "document",
-                "Sec-Fetch-Mode": "navigate",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-User": "?1",
+                "Accept-Encoding": "gzip, deflate",
+                "Connection": "keep-alive",
                 "Upgrade-Insecure-Requests": "1",
                 "Cache-Control": "max-age=0",
-            })
+            }
             
-            # Try with session first
-            response = session.get(url, headers=headers, timeout=15)
+            # Use a fresh session for each attempt
+            temp_session = requests.Session()
+            temp_session.headers.update(headers)
+            
+            response = temp_session.get(url, timeout=15)
             
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "html.parser")
                 
                 # Try multiple content selectors for ZBC
                 content_selectors = [
-                    "div.td-post-content",  # Primary selector for ZBC
+                    "div.td-post-content",
                     "div.td-main-content-wrap",
                     "div.tdc-container-wrap",
-                    "article",  # Fallback
+                    "article",
                     "div.entry-content",
                     "div.post-content",
                     "main",
@@ -527,41 +536,22 @@ def scrape_custom_content(url):
                 if not main_content:
                     return "Could not find the article content."
                 
-                # Get paragraphs and filter out unwanted ones
+                # Get all paragraphs
                 paragraphs = main_content.find_all("p")
                 
-                # Filter out common unwanted paragraphs (ads, related articles, etc.)
-                filtered_paragraphs = []
+                # Extract text from paragraphs
+                content_paragraphs = []
                 for p in paragraphs:
                     text = p.get_text(strip=True)
-                    # Skip empty paragraphs and common unwanted patterns
-                    if text and len(text) > 20:  # Skip very short paragraphs
-                        # Skip paragraphs containing unwanted text
-                        unwanted_keywords = [
-                            "read also",
-                            "related articles",
-                            "continue reading",
-                            "click here",
-                            "advertisement",
-                            "sponsored",
-                            "subscribe",
-                            "watch video",
-                            "video below",
-                        ]
-                        
-                        text_lower = text.lower()
-                        if not any(keyword in text_lower for keyword in unwanted_keywords):
-                            # Also skip paragraphs that are mostly links
-                            links = p.find_all("a")
-                            if len(links) / len(text.split()) < 0.3:  # Less than 30% links
-                                filtered_paragraphs.append(text)
+                    if text and len(text) > 10:
+                        content_paragraphs.append(text)
                 
                 # Join with proper spacing
-                content = "\n\n".join(filtered_paragraphs)
+                content = "\n\n".join(content_paragraphs)
                 
                 # Limit content length
                 if len(content) > 10000:
-                    content = content[:10000] + "... [Content truncated]"
+                    content = content[:10000] + "..."
                 
                 return content if content else "No content found in the article."
             
@@ -569,18 +559,9 @@ def scrape_custom_content(url):
                 print(f"Attempt {attempt + 1}: Got 403 Forbidden for {url}")
                 
                 if attempt < max_retries - 1:
-                    # Try different approach on retry
-                    wait_time = retry_delay * (attempt + 1) * random.uniform(1, 2)
+                    wait_time = retry_delay * (attempt + 1)
                     print(f"Waiting {wait_time:.2f} seconds before retry...")
                     time.sleep(wait_time)
-                    
-                    # Try with different user agent on retry
-                    session.headers.update({"User-Agent": random.choice(user_agents)})
-                    
-                    # Try to mimic browser behavior more closely
-                    if attempt == 1:
-                        headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-                        headers["Accept-Encoding"] = "gzip, deflate, br"
                 
             else:
                 return f"Failed to fetch the page at {url}. Status code: {response.status_code}"
@@ -599,8 +580,14 @@ def scrape_custom_content(url):
 
 def scrape_custom_json(json_url, save_path):
     try:
-        headers = get_enhanced_headers()
-        response = session.get(json_url, headers=headers, timeout=10)
+        # Use a new session for this request
+        temp_session = requests.Session()
+        temp_session.headers.update({
+            "User-Agent": random.choice(user_agents),
+            "Accept": "application/json, text/plain, */*",
+        })
+        
+        response = temp_session.get(json_url, timeout=10)
         
         if response.status_code == 200:
             news_data = response.json()
@@ -744,8 +731,11 @@ def scrape_all():
     
     return jsonify({"message": "Scraping all feeds completed", "results": results}), 200
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Simple health check endpoint"""
+    return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()}), 200
+
 if __name__ == "__main__":
-    # Initialize session with random parameters
-    rotate_session_params()
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
