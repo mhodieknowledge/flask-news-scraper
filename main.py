@@ -201,42 +201,49 @@ def find_image_url(article):
     return None
 
 def scrape_category_page(url, category_name):
-    mapping = {
+    category_mapping = {
         "sport": "Sport",
         "local-news": "Local News",
         "business": "Business"
     }
-    category_class = mapping.get(category_name)
+    category_class = category_mapping.get(category_name, category_name.capitalize())
 
     headers = {"User-Agent": random.choice(user_agents)}
     response = requests.get(url, headers=headers)
 
-    if response.status_code != 200:
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, "html.parser")
+        articles = soup.find_all(["div", "article"], class_=lambda x: x and ("module" in x or "article" in x))
+
+        unique_hrefs = set()
+        data = []
+
+        for article in articles:
+            category_tag = article.find("a", class_="td-post-category")
+            if category_tag and category_tag.text.strip() == category_class:
+                title_elem = article.find("p", class_="entry-title td-module-title").find("a")
+                if title_elem:
+                    title = title_elem.text.strip()
+                    href = title_elem["href"]
+
+                    img_url = find_image_url(article)
+
+                    if href not in unique_hrefs:
+                        unique_hrefs.add(href)
+                        data.append({
+                            "title": title,
+                            "href": href,
+                            "img_url": img_url,
+                            "category": category_class,
+                            "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
+                            "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
+                        })
+
+        return data
+    else:
+        print(f"Failed to scrape {category_name}. Status code: {response.status_code}")
         return None
 
-    soup = BeautifulSoup(response.content, "html.parser")
-    articles = soup.find_all(["div", "article"])
-
-    data = []
-    seen = set()
-
-    for article in articles:
-        category_tag = article.find("a", class_="td-post-category")
-        if category_tag and category_tag.text.strip() == category_class:
-            title_elem = article.find("a", href=True)
-            if title_elem:
-                href = title_elem["href"]
-                if href not in seen:
-                    seen.add(href)
-                    data.append({
-                        "title": title_elem.get_text(strip=True),
-                        "href": href,
-                        "img_url": find_image_url(article),
-                        "category": category_class,
-                        "time": datetime.now(pytz.timezone("Africa/Harare")).strftime('%H:%M'),
-                        "date": datetime.now(pytz.timezone("Africa/Harare")).strftime('%d %b %Y')
-                    })
-    return data
 
 def scrape_custom_content(url):
     headers = {"User-Agent": random.choice(user_agents)}
